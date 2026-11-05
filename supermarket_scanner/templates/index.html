@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard · ShelfScan</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body data-page="dashboard" data-currency="{{ currency }}">
+<nav><div class="brand">ShelfScan</div><a href="/" class="active">Dashboard</a><a href="/pos">Point of sale</a><a href="/inventory">Inventory</a></nav>
+<main>
+<h1>Today at the store</h1>
+<div class="grid g4">
+<div class="card stat tag"><div class="label">Revenue today</div><div class="num" id="s-rev">–</div></div>
+<div class="card stat"><div class="label">Sales today</div><div class="num" id="s-sales">–</div></div>
+<div class="card stat"><div class="label">Items sold today</div><div class="num" id="s-items">–</div></div>
+<div class="card stat"><div class="label">Products</div><div class="num" id="s-prod">–</div></div>
+<div class="card stat"><div class="label">Stock value</div><div class="num" id="s-val">–</div></div>
+</div>
+<div class="grid g2" style="margin-top:16px">
+<div class="card"><h2>Barcode scanner</h2>
+<img id="cam" class="cam" src="/video_feed" alt="Live camera feed with barcode detection">
+<div class="row" style="margin-top:10px"><button id="scan-start" class="primary">Start camera</button><button id="scan-stop">Stop</button><span id="scanner-status" class="muted"></span></div>
+<form id="manual-form" class="row" style="margin-top:10px"><input id="manual-code" placeholder="Type a barcode" inputmode="numeric" aria-label="Barcode"><button>Add</button></form>
+<div style="margin-top:10px"><label class="muted">No camera? Read a barcode from a photo<input id="photo" type="file" accept="image/*"></label></div></div>
+<div class="card"><h2>Live scans</h2><ul class="feed" id="feed"><li class="empty">Hold a barcode up to the camera and it shows here.</li></ul>
+<h2 style="margin-top:18px">Running low</h2><table><tbody id="low"></tbody></table></div>
+<div class="card"><h2>Recent sales</h2><table><tbody id="recent"></tbody></table></div>
+<div class="card"><h2>Best sellers</h2><table><tbody id="top"></tbody></table></div>
+</div>
+</main><script src="{{ url_for('static', filename='dashboard.js') }}"></script></body></html>

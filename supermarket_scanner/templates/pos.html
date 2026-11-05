@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Point of sale · ShelfScan</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body data-page="pos" data-currency="{{ currency }}">
+<nav><div class="brand">ShelfScan</div><a href="/">Dashboard</a><a href="/pos" class="active">Point of sale</a><a href="/inventory">Inventory</a></nav>
+<main>
+<h1>Point of sale</h1>
+<div class="pos-layout">
+<div class="card"><h2>Barcode scanner</h2>
+<img id="cam" class="cam" src="/video_feed" alt="Live camera feed with barcode detection">
+<div class="row" style="margin-top:10px"><button id="scan-start" class="primary">Start camera</button><button id="scan-stop">Stop</button><span id="scanner-status" class="muted"></span></div>
+<form id="manual-form" class="row" style="margin-top:10px"><input id="manual-code" placeholder="Type a barcode" inputmode="numeric" aria-label="Barcode"><button>Add</button></form>
+<div style="margin-top:10px"><label class="muted">No camera? Read a barcode from a photo<input id="photo" type="file" accept="image/*"></label></div></div>
+<div class="card"><h2>Current sale</h2>
+<div class="scroll"><table><thead><tr><th>Item</th><th>Qty</th><th class="r">Price</th><th></th></tr></thead><tbody id="cart"></tbody></table></div>
+<div class="total"><span>Total</span><span id="total" class="price">{{ currency }}0.00</span></div>
+<button id="pay" class="primary big" disabled>Complete sale</button>
+<button id="clear" style="width:100%;margin-top:8px">Clear cart</button></div>
+</div>
+</main><script src="{{ url_for('static', filename='dashboard.js') }}"></script></body></html>

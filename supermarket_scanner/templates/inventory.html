@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inventory · ShelfScan</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body data-page="inventory" data-currency="{{ currency }}">
+<nav><div class="brand">ShelfScan</div><a href="/">Dashboard</a><a href="/pos">Point of sale</a><a href="/inventory" class="active">Inventory</a></nav>
+<main>
+<h1>Inventory</h1>
+<div class="grid" style="grid-template-columns:minmax(260px,340px) 1fr">
+<div class="card"><h2>Barcode scanner</h2>
+<img id="cam" class="cam" src="/video_feed" alt="Live camera feed with barcode detection">
+<div class="row" style="margin-top:10px"><button id="scan-start" class="primary">Start camera</button><button id="scan-stop">Stop</button><span id="scanner-status" class="muted"></span></div>
+<form id="manual-form" class="row" style="margin-top:10px"><input id="manual-code" placeholder="Type a barcode" inputmode="numeric" aria-label="Barcode"><button>Add</button></form>
+<div style="margin-top:10px"><label class="muted">No camera? Read a barcode from a photo<input id="photo" type="file" accept="image/*"></label></div></div>
+<div class="card">
+<div class="row" style="margin-bottom:12px"><input id="search" type="search" placeholder="Search name, barcode or category" aria-label="Search products"><button id="add" class="primary">Add product</button></div>
+<div class="scroll"><table><thead><tr><th>Product</th><th>Category</th><th class="r">Price</th><th class="r">Stock</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="muted">Scan a new barcode and the add form opens with it filled in. Red stock means at or below the minimum.</p>
+</div></div>
+<dialog id="dlg"><form id="pform"><h2 id="dtitle">Add product</h2>
+<label>Barcode<input name="barcode" required></label>
+<label>Name<input name="name" required></label>
+<label>Category<input name="category"></label>
+<div class="two"><div><label>Price ({{ currency }})<input name="price" type="number" step="0.01" min="0" required></label></div>
+<div><label>Stock<input name="stock" type="number" min="0" required></label></div></div>
+<label>Minimum stock before warning<input name="min_stock" type="number" min="0"></label>
+<div class="row" style="margin-top:16px;justify-content:flex-end"><button type="button" id="cancel">Cancel</button><button class="primary">Save product</button></div></form></dialog>
+</main><script src="{{ url_for('static', filename='dashboard.js') }}"></script></body></html>
