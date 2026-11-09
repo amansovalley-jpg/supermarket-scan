@@ -1,0 +1,2657 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-accent="teal" data-fontsize="md">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zestora Market — Fresh groceries, delivered</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+:root{
+  --font:16px;
+  --bg:#f6f8fb;--surface:#fff;--surface-2:#eef2f7;--surface-3:#e2e8f0;
+  --text:#0f172a;--muted:#64748b;--border:#e2e8f0;
+  --primary:#0f766e;--primary-2:#14b8a6;--primary-ink:#fff;
+  --success:#16a34a;--warning:#f59e0b;--danger:#dc2626;--info:#0284c7;
+  --radius:16px;--radius-sm:10px;
+  --shadow-sm:0 1px 2px rgba(15,23,42,.06);
+  --shadow:0 6px 20px rgba(15,23,42,.08);
+  --shadow-lg:0 20px 40px rgba(15,23,42,.14);
+}
+[data-accent="blue"]{--primary:#1d4ed8;--primary-2:#3b82f6}
+[data-accent="purple"]{--primary:#7c3aed;--primary-2:#a78bfa}
+[data-accent="rose"]{--primary:#e11d48;--primary-2:#fb7185}
+[data-accent="emerald"]{--primary:#059669;--primary-2:#34d399}
+[data-accent="amber"]{--primary:#b45309;--primary-2:#f59e0b}
+[data-theme="dark"]{
+  --bg:#0b1220;--surface:#121c2e;--surface-2:#1b2a42;--surface-3:#243753;
+  --text:#e8eefb;--muted:#94a3b8;--border:#243753;
+  --primary:#2dd4bf;--primary-2:#5eead4;--primary-ink:#042f2e;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.5);--shadow:0 8px 24px rgba(0,0,0,.5);--shadow-lg:0 24px 48px rgba(0,0,0,.6);
+}
+[data-fontsize="sm"]{--font:14px}
+[data-fontsize="lg"]{--font:18px}
+[data-fontsize="xl"]{--font:20px}
+*{box-sizing:border-box}
+html{font-size:var(--font);scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);margin:0;transition:background .25s,color .25s}
+a{color:var(--primary);text-decoration:none}
+.muted{color:var(--muted)}
+.small{font-size:.82rem}
+.xs{font-size:.72rem}
+.surface{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+.surface-2{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.pad{padding:1.1rem}
+.pad-lg{padding:1.6rem}
+.brand-text{color:var(--primary);font-weight:800;letter-spacing:-.02em}
+.h-title{font-weight:800;letter-spacing:-.02em;color:var(--text)}
+.btn-brand{background:var(--primary);color:var(--primary-ink);border:none;border-radius:999px;padding:.55rem 1.1rem;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:.45rem;transition:.15s}
+.btn-brand:hover{filter:brightness(1.08);color:var(--primary-ink);transform:translateY(-1px)}
+.btn-brand:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border);border-radius:999px;padding:.5rem 1rem;font-weight:600;transition:.15s}
+.btn-ghost:hover{background:var(--surface-2);color:var(--text)}
+.btn-soft{background:color-mix(in srgb,var(--primary) 12%,transparent);color:var(--primary);border:none;border-radius:999px;padding:.45rem .9rem;font-weight:600}
+.btn-soft:hover{background:color-mix(in srgb,var(--primary) 22%,transparent);color:var(--primary)}
+.chip{display:inline-flex;align-items:center;gap:.35rem;background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:.3rem .75rem;font-size:.8rem;font-weight:600;color:var(--text);cursor:pointer;transition:.15s}
+.chip:hover{border-color:var(--primary);color:var(--primary)}
+.chip.active{background:var(--primary);color:var(--primary-ink);border-color:var(--primary)}
+.badge-soft{background:color-mix(in srgb,var(--primary) 12%,transparent);color:var(--primary);border-radius:999px;padding:.25rem .7rem;font-size:.72rem;font-weight:700;display:inline-block}
+.app-nav{background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.55rem 0}
+.app-nav .navbar-brand{font-weight:800;font-size:1.35rem;color:var(--text);display:flex;align-items:center;gap:.5rem}
+.app-nav .navbar-brand i{color:var(--primary)}
+.app-nav .nav-link{color:var(--muted);font-weight:600;border-radius:999px;padding:.4rem .85rem!important;transition:.15s}
+.app-nav .nav-link:hover{color:var(--primary);background:var(--surface-2)}
+.app-nav .nav-link.active{color:var(--primary-ink);background:var(--primary)}
+.icon-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--text);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s}
+.icon-btn:hover{background:var(--surface-2);color:var(--primary)}
+.icon-btn.on{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 40%,transparent)}
+.search-wrap{position:relative;flex:1;max-width:520px}
+.search-wrap input{width:100%;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:.55rem 1rem .55rem 2.5rem;font-size:.9rem;outline:none;transition:.15s}
+.search-wrap input:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 18%,transparent)}
+.search-wrap>i{position:absolute;left:.9rem;top:50%;transform:translateY(-50%);color:var(--muted)}
+.suggest{position:absolute;top:110%;left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-lg);z-index:1050;overflow:hidden;display:none}
+.suggest div{padding:.6rem .9rem;cursor:pointer;font-size:.88rem;border-bottom:1px solid var(--border)}
+.suggest div:last-child{border-bottom:none}
+.suggest div:hover{background:var(--surface-2)}
+.carousel-item img{height:420px;object-fit:cover;width:100%}
+@media(max-width:768px){.carousel-item img{height:280px}}
+.carousel-caption-box{background:linear-gradient(90deg,rgba(4,20,30,.72),rgba(4,20,30,.15));backdrop-filter:blur(2px);border-radius:var(--radius);padding:1.4rem 1.6rem;text-align:left;max-width:520px}
+.carousel-caption-box h2{font-weight:800;color:#fff;letter-spacing:-.03em}
+.carousel-caption-box p{color:#dbe7ee;margin-bottom:.9rem}
+.pcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;position:relative;transition:.18s;display:flex;flex-direction:column}
+.pcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:color-mix(in srgb,var(--primary) 30%,var(--border))}
+.pcard-img{position:relative;height:150px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pcard-img img{height:100%;width:100%;object-fit:cover;transition:.3s}
+.pcard:hover .pcard-img img{transform:scale(1.05)}
+.badge-off{position:absolute;top:8px;left:8px;background:var(--danger);color:#fff;border-radius:999px;padding:.12rem .5rem;font-size:.68rem;font-weight:800;z-index:2}
+.pcard .icon-btn{position:absolute;width:30px;height:30px;font-size:.78rem;z-index:2}
+.pcard .wish{top:8px;right:8px}
+.pcard .quick{top:44px;right:8px;opacity:0;transform:translateX(6px);transition:.18s}
+.pcard:hover .quick{opacity:1;transform:none}
+.pcard-body{padding:.7rem;display:flex;flex-direction:column;gap:.15rem;flex:1}
+.pcard-name{font-weight:600;font-size:.86rem;line-height:1.25;height:2.5em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.price{font-weight:800;color:var(--primary);font-size:1.02rem}
+.old{color:var(--muted);font-size:.76rem}
+.stars-inner{color:#f59e0b;font-size:.72rem;letter-spacing:.5px}
+.stock{font-size:.7rem;font-weight:700}
+.stock.ok{color:var(--success)}
+.stock.low{color:var(--warning)}
+.stock.out{color:var(--danger)}
+.mini-btn{border:1px solid var(--border);background:var(--surface);color:var(--muted);border-radius:8px;width:28px;height:28px;font-size:.75rem;cursor:pointer;transition:.15s}
+.mini-btn:hover{color:var(--primary);border-color:var(--primary)}
+.grid-products{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.9rem}
+@media(min-width:1200px){.grid-products{grid-template-columns:repeat(auto-fill,minmax(185px,1fr))}}
+.page{display:none}
+.page.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.toast-wrap{position:fixed;bottom:1rem;right:1rem;z-index:2000;display:flex;flex-direction:column;gap:.5rem}
+.toast-x{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:12px;box-shadow:var(--shadow-lg);padding:.7rem .9rem;min-width:250px;display:flex;gap:.6rem;align-items:flex-start;font-size:.86rem;animation:slideIn .25s ease}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+.toast-x .ti{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0}
+.chat-fab{position:fixed;bottom:1.2rem;right:1.2rem;z-index:1500;width:56px;height:56px;border-radius:50%;background:var(--primary);color:var(--primary-ink);border:none;box-shadow:var(--shadow-lg);font-size:1.25rem;cursor:pointer;transition:.2s}
+.chat-fab:hover{transform:scale(1.06)}
+.chat-panel{position:fixed;bottom:5.2rem;right:1.2rem;width:360px;max-width:92vw;height:520px;max-height:80vh;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-lg);z-index:1500;display:none;flex-direction:column;overflow:hidden}
+.chat-panel.open{display:flex;animation:fade .2s ease}
+.chat-head{padding:.8rem 1rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--surface-2)}
+.chat-body{flex:1;overflow-y:auto;padding:.8rem;display:flex;flex-direction:column;gap:.55rem}
+.msg{max-width:82%;padding:.5rem .75rem;border-radius:14px;font-size:.84rem;line-height:1.35;position:relative;word-wrap:break-word}
+.msg .meta{font-size:.66rem;opacity:.7;margin-top:.2rem}
+.msg.in{background:var(--surface-2);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.out{background:var(--primary);color:var(--primary-ink);align-self:flex-end;border-bottom-right-radius:4px}
+.chat-input{display:flex;gap:.4rem;padding:.6rem;border-top:1px solid var(--border)}
+.chat-input input{flex:1;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:.5rem .9rem;outline:none;font-size:.86rem}
+.room-tabs{display:flex;gap:.35rem;flex-wrap:wrap;padding:.5rem;border-bottom:1px solid var(--border);background:var(--surface)}
+.room-tabs button{flex:1;min-width:70px;border:none;background:transparent;color:var(--muted);font-size:.72rem;font-weight:700;padding:.35rem .2rem;border-radius:8px;cursor:pointer}
+.room-tabs button.active{background:var(--primary);color:var(--primary-ink)}
+.stat-card{padding:1rem;border-radius:14px;background:var(--surface);border:1px solid var(--border)}
+.stat-num{font-size:1.55rem;font-weight:800;color:var(--primary);line-height:1.1}
+.stat-lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
+.bar-chart{display:flex;align-items:flex-end;gap:8px;height:160px}
+.bar-chart .bar{flex:1;background:linear-gradient(180deg,var(--primary),var(--primary-2));border-radius:8px 8px 0 0;min-height:4px;transition:.3s}
+.bar-chart .bar-lbl{text-align:center;font-size:.7rem;color:var(--muted);margin-top:.3rem}
+.progress-thin{height:8px;background:var(--surface-2);border-radius:999px;overflow:hidden}
+.progress-thin>div{height:100%;background:var(--primary);border-radius:999px}
+.table-x{width:100%;font-size:.85rem}
+.table-x th{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;padding:.5rem;border-bottom:1px solid var(--border);text-align:left}
+.table-x td{padding:.55rem .5rem;border-bottom:1px solid var(--border);vertical-align:middle}
+.form-control,.form-select{background:var(--surface);color:var(--text);border-color:var(--border);border-radius:10px}
+.form-control:focus,.form-select:focus{background:var(--surface);color:var(--text);border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 18%,transparent)}
+.form-control::placeholder{color:var(--muted)}
+.form-check-input:checked{background-color:var(--primary);border-color:var(--primary)}
+.nav-pills .nav-link{color:var(--muted);font-weight:600;border-radius:999px;font-size:.86rem}
+.nav-pills .nav-link.active{background:var(--primary);color:var(--primary-ink)}
+.modal-content,.offcanvas,.dropdown-menu,.accordion-item{background:var(--surface);color:var(--text);border-color:var(--border)}
+.accordion-button{background:var(--surface);color:var(--text)}
+.accordion-button:not(.collapsed){background:var(--surface-2);color:var(--text);box-shadow:none}
+.accordion-button:focus{box-shadow:none}
+.accordion-body{color:var(--text)}
+.dropdown-item{color:var(--text)}
+.dropdown-item:hover{background:var(--surface-2);color:var(--primary)}
+.btn-close{filter:var(--close-filter,none)}
+[data-theme="dark"] .btn-close{filter:invert(1) grayscale(1)}
+[data-theme="dark"] .navbar-toggler-icon{filter:invert(1)}
+[data-theme="dark"] .table{color:var(--text)}
+[data-theme="dark"] .text-muted{color:var(--muted)!important}
+[data-theme="dark"] .bg-light{background:var(--surface-2)!important}
+[data-theme="dark"] .btn-light{background:var(--surface-2);color:var(--text);border-color:var(--border)}
+.list-group-item{background:var(--surface);color:var(--text);border-color:var(--border)}
+.tooltip-inner{background:var(--text);color:var(--bg);font-size:.78rem;border-radius:8px}
+.popover{background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg)}
+.popover-header{background:var(--surface-2);color:var(--text);border-color:var(--border)}
+.popover-body{color:var(--text)}
+.bs-popover-auto[data-popper-placement^="top"]>.popover-arrow::before,.bs-popover-top>.popover-arrow::before{border-top-color:var(--border)}
+.footer{background:#07131f;color:#94a3b8;padding:2.4rem 0 1.4rem;margin-top:3rem}
+.footer a{color:#cbd5e1}
+.footer a:hover{color:#fff}
+.footer .brand{color:#fff;font-weight:800;font-size:1.3rem}
+[data-theme="dark"] .footer{background:#050b13}
+.scanner-box{border:2px dashed color-mix(in srgb,var(--primary) 45%,var(--border));border-radius:14px;padding:1.2rem;text-align:center;background:color-mix(in srgb,var(--primary) 5%,var(--surface))}
+#scanVideo{width:100%;max-height:240px;border-radius:12px;background:#000;object-fit:cover}
+.countdown{font-family:'Courier New',monospace;font-weight:800;font-size:1.3rem;color:var(--primary);letter-spacing:1px}
+.recently{display:flex;gap:.7rem;overflow-x:auto;padding-bottom:.4rem}
+.recently .ri{min-width:110px;text-align:center;cursor:pointer}
+.recently .ri img{width:64px;height:64px;object-fit:cover;border-radius:12px;background:var(--surface-2)}
+.brand-strip{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:center;opacity:.75}
+.brand-strip span{font-weight:800;font-size:1.05rem;color:var(--muted);letter-spacing:.02em}
+.testimonial{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;height:100%}
+.testimonial .avatar{width:40px;height:40px;border-radius:50%;background:var(--primary);color:var(--primary-ink);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:.5rem;overflow:hidden}
+.ticket{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.8rem;margin-bottom:.6rem}
+.feature-group h6{color:var(--primary);font-weight:800;margin-top:1.2rem}
+.feature-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.35rem}
+.feature-list li{font-size:.84rem;display:flex;gap:.45rem;align-items:flex-start}
+.feature-list li i{color:var(--success);margin-top:.25rem;font-size:.7rem}
+.back-top{position:fixed;left:1.1rem;bottom:1.2rem;z-index:1200;width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--border);color:var(--text);box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;cursor:pointer}
+.back-top.show{display:flex}
+.skel{background:linear-gradient(90deg,var(--surface-2),var(--surface-3),var(--surface-2));background-size:200% 100%;animation:sh 1.2s infinite;border-radius:8px}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+[data-reduce-motion="true"] *{animation:none!important;transition:none!important}
+[data-contrast="high"]{--muted:#334155;--border:#94a3b8}
+[data-theme="dark"][data-contrast="high"]{--muted:#cbd5e1;--border:#64748b}
+.hr{border-top:1px solid var(--border);margin:.8rem 0}
+.star-pick i{cursor:pointer;color:#cbd5e1;font-size:1.1rem;transition:.1s}
+.star-pick i.on{color:#f59e0b}
+.avatar-circle{width:42px;height:42px;border-radius:50%;background:var(--primary);color:var(--primary-ink);display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem}
+.order-timeline{display:flex;gap:0;margin:.6rem 0;overflow-x:auto}
+.order-timeline .step{flex:1;text-align:center;font-size:.68rem;color:var(--muted);position:relative;min-width:70px}
+.order-timeline .step .dot{width:22px;height:22px;border-radius:50%;background:var(--surface-2);border:2px solid var(--border);margin:0 auto .25rem;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--muted)}
+.order-timeline .step.done .dot{background:var(--primary);border-color:var(--primary);color:var(--primary-ink)}
+.order-timeline .step.done{color:var(--primary);font-weight:700}
+.online-dot{width:8px;height:8px;border-radius:50%;background:var(--success);display:inline-block;margin-right:.3rem}
+</style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg app-nav sticky-top">
+  <div class="container-fluid px-3 px-lg-4">
+    <a class="navbar-brand" href="#" onclick="App.go('home');return false;">
+      <i class="fa-solid fa-seedling"></i><span>Zestora</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-1">
+        <li class="nav-item"><a class="nav-link" data-nav="home" href="#" onclick="App.go('home');return false;">Home</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="shop" href="#" onclick="App.go('shop');return false;">Shop</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="community" href="#" onclick="App.go('community');return false;">Community</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="support" href="#" onclick="App.go('support');return false;">Support</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav="settings" href="#" onclick="App.go('settings');return false;">Settings</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Dashboards</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" onclick="App.go('user');return false;"><i class="fa-solid fa-user me-2"></i>User</a></li>
+            <li><a class="dropdown-item" href="#" onclick="App.go('staff');return false;"><i class="fa-solid fa-users me-2"></i>Staff</a></li>
+            <li><a class="dropdown-item" href="#" onclick="App.go('manager');return false;"><i class="fa-solid fa-chart-line me-2"></i>Manager</a></li>
+            <li><a class="dropdown-item" href="#" onclick="App.go('admin');return false;"><i class="fa-solid fa-gear me-2"></i>Admin</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" onclick="App.go('features');return false;"><i class="fa-solid fa-list-check me-2"></i>Feature list</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="search-wrap me-2 my-2 my-lg-0">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="navSearch" type="text" placeholder="Search 400+ products…" autocomplete="off" onkeyup="App.navSuggest(this.value)" onkeydown="if(event.key==='Enter')App.navSearchGo()">
+        <div class="suggest" id="navSuggest"></div>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <button class="icon-btn" title="Toggle theme" onclick="App.cycleTheme()"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+        <div class="dropdown">
+          <button class="icon-btn position-relative" data-bs-toggle="dropdown" title="Notifications" onclick="App.renderNotifDropdown()">
+            <i class="fa-solid fa-bell"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notifBadge">2</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end p-2" style="width:320px" id="notifMenu"></ul>
+        </div>
+        <button class="btn-brand position-relative" onclick="App.openCart()">
+          <i class="fa-solid fa-basket-shopping"></i><span class="d-none d-md-inline">Cart</span>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartBadge">0</span>
+        </button>
+        <div class="dropdown">
+          <button class="icon-btn" data-bs-toggle="dropdown" title="Account"><i class="fa-solid fa-user"></i></button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><h6 class="dropdown-header" id="accName">Alex Johnson</h6></li>
+            <li><a class="dropdown-item" href="#" onclick="App.go('user');return false;">My account</a></li>
+            <li><a class="dropdown-item" href="#" onclick="App.go('settings');return false;">Settings</a></li>
+            <li><a class="dropdown-item" href="#" onclick="App.go('support');return false;">Get help</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" onclick="App.openScanner();return false;"><i class="fa-solid fa-barcode me-2"></i>Scan product</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="container-fluid px-3 px-lg-4 py-4" style="max-width:1500px;margin:0 auto">
+
+<!-- ============================================================ -->
+<!-- HOME PAGE -->
+<!-- ============================================================ -->
+<section class="page active" id="page-home">
+
+  <!-- CAROUSEL -->
+  <div id="heroCarousel" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="5500">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3"></button>
+    </div>
+    <div class="carousel-inner rounded-4 overflow-hidden">
+      <div class="carousel-item active">
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=70" alt="Fresh produce">
+        <div class="carousel-caption d-flex align-items-center h-100">
+          <div class="carousel-caption-box">
+            <span class="badge-soft mb-2" style="background:rgba(255,255,255,.2);color:#fff">Fresh this week</span>
+            <h2>Farm-fresh produce, delivered in 2 hours</h2>
+            <p>Up to 30% off organic fruit & veg. Handpicked daily.</p>
+            <button class="btn-brand" onclick="App.go('shop')">Shop the sale <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=1600&q=70" alt="Grocery">
+        <div class="carousel-caption d-flex align-items-center h-100">
+          <div class="carousel-caption-box">
+            <h2>Stock up &amp; save more</h2>
+            <p>Daily essentials at prices that make sense. 400+ items.</p>
+            <button class="btn-brand" onclick="App.go('shop')">Browse essentials <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1601599963565-b7f49deb352b?auto=format&fit=crop&w=1600&q=70" alt="Delivery">
+        <div class="carousel-caption d-flex align-items-center h-100">
+          <div class="carousel-caption-box">
+            <h2>Scan, shop, smile</h2>
+            <p>Use our barcode / QR scanner and add items in a tap.</p>
+            <button class="btn-brand" onclick="App.openScanner()"><i class="fa-solid fa-barcode"></i> Open scanner</button>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=1600&q=70" alt="Pantry">
+        <div class="carousel-caption d-flex align-items-center h-100">
+          <div class="carousel-caption-box">
+            <h2>Join 12,000 happy shoppers</h2>
+            <p>Earn loyalty points on every order. Free delivery over $35.</p>
+            <button class="btn-brand" onclick="App.go('user')">My account <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+  </div>
+
+  <!-- TRUST STRIP -->
+  <div class="row g-2 mb-4">
+    <div class="col-6 col-md-3"><div class="surface pad d-flex align-items-center gap-2"><i class="fa-solid fa-truck-fast fa-lg" style="color:var(--primary)"></i><div><div class="fw-bold small">Free delivery</div><div class="xs muted">On orders over $35</div></div></div></div>
+    <div class="col-6 col-md-3"><div class="surface pad d-flex align-items-center gap-2"><i class="fa-solid fa-shield-halved fa-lg" style="color:var(--primary)"></i><div><div class="fw-bold small">Secure checkout</div><div class="xs muted">256-bit encryption</div></div></div></div>
+    <div class="col-6 col-md-3"><div class="surface pad d-flex align-items-center gap-2"><i class="fa-solid fa-rotate-left fa-lg" style="color:var(--primary)"></i><div><div class="fw-bold small">Easy returns</div><div class="xs muted">30-day policy</div></div></div></div>
+    <div class="col-6 col-md-3"><div class="surface pad d-flex align-items-center gap-2"><i class="fa-solid fa-headset fa-lg" style="color:var(--primary)"></i><div><div class="fw-bold small">24/7 support</div><div class="xs muted">Chat with us</div></div></div></div>
+  </div>
+
+  <!-- QUICK CATEGORIES -->
+  <div class="mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h5 class="h-title mb-0">Shop by category</h5>
+      <a href="#" class="small" onclick="App.go('shop');return false;">See all <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="row g-2" id="catRow"></div>
+  </div>
+
+  <!-- DEAL + SCANNER + NEWSLETTER -->
+  <div class="row g-3 mb-4">
+    <div class="col-lg-4">
+      <div class="surface pad h-100">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="stat-lbl">Deal of the day</div>
+            <h6 class="h-title mt-1 mb-0" id="dealName">Organic Avocado 3-pack</h6>
+          </div>
+          <span class="badge-soft">-42%</span>
+        </div>
+        <div class="my-2"><span class="price" style="font-size:1.6rem">$3.99</span> <del class="old">$6.99</del></div>
+        <div class="small muted">Ends in</div>
+        <div class="countdown" id="dealCountdown">00:00:00</div>
+        <button class="btn-brand w-100 mt-2" onclick="App.addToCartById(0)">Grab deal <i class="fa-solid fa-bolt"></i></button>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="surface pad h-100">
+        <div class="d-flex justify-content-between align-items-center">
+          <h6 class="h-title mb-0"><i class="fa-solid fa-barcode me-2"></i>Scan &amp; add</h6>
+          <i class="fa-solid fa-circle-info muted" data-bs-toggle="popover" data-bs-title="How it works" data-bs-content="Point your camera at any product barcode or QR code. We'll match it to our catalogue and add it to your cart."></i>
+        </div>
+        <div class="scanner-box mt-2" onclick="App.openScanner()" style="cursor:pointer">
+          <i class="fa-solid fa-qrcode fa-2x mb-2" style="color:var(--primary)"></i>
+          <div class="fw-bold">Tap to open scanner</div>
+          <div class="xs muted">Barcode · QR · Camera or manual</div>
+        </div>
+        <div class="input-group mt-2">
+          <input class="form-control" id="homeBarcode" placeholder="Or type a barcode (e.g. 8901234500001)">
+          <button class="btn-brand" onclick="App.scanManual('homeBarcode','homeScanResult')"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="mt-2 small" id="homeScanResult"></div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="surface pad h-100">
+        <h6 class="h-title"><i class="fa-solid fa-envelope-open-text me-2"></i>Newsletter</h6>
+        <p class="small muted mb-2">Weekly deals + a 10% welcome coupon. No spam, unsubscribe anytime.</p>
+        <div class="input-group">
+          <input class="form-control" id="newsEmail" placeholder="you@email.com">
+          <button class="btn-brand" onclick="App.subscribe()">Join</button>
+        </div>
+        <div class="small mt-2" id="newsStatus"></div>
+        <div class="hr"></div>
+        <div class="d-flex align-items-center gap-2">
+          <i class="fa-solid fa-gift" style="color:var(--primary)"></i>
+          <div class="small">Use code <b>FRESH10</b> at checkout for 10% off.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED -->
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <h5 class="h-title mb-0">Popular picks <i class="fa-solid fa-fire" style="color:var(--warning)"></i></h5>
+    <a href="#" class="small" onclick="App.go('shop');return false;">View all <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+  <div class="grid-products mb-4" id="homeFeatured"></div>
+
+  <!-- RECENTLY VIEWED -->
+  <div class="mb-4">
+    <h6 class="h-title mb-2"><i class="fa-solid fa-clock-rotate-left me-2"></i>Recently viewed</h6>
+    <div class="recently" id="recentRow"></div>
+  </div>
+
+  <!-- BRANDS -->
+  <div class="surface pad mb-4">
+    <div class="text-center mb-2"><span class="stat-lbl">Trusted brands we stock</span></div>
+    <div class="brand-strip">
+      <span>GreenLeaf</span><span>DairyGold</span><span>BakerHouse</span><span>OceanFresh</span><span>SnackJoy</span><span>PurePantry</span><span>FrostBite</span><span>HomeCare</span>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <h5 class="h-title mb-2">What shoppers say</h5>
+  <div class="row g-3 mb-4">
+    <div class="col-md-4"><div class="testimonial"><div class="d-flex align-items-center gap-2 mb-2"><div class="avatar">MJ</div><div><div class="fw-bold small">Maria J.</div><div class="stars-inner">★★★★★</div></div></div><p class="small mb-0 muted">"The scanner feature is a game changer. I just scan what's in my fridge and reorder in seconds."</p></div></div>
+    <div class="col-md-4"><div class="testimonial"><div class="d-flex align-items-center gap-2 mb-2"><div class="avatar">TK</div><div><div class="fw-bold small">Tunde K.</div><div class="stars-inner">★★★★★</div></div></div><p class="small mb-0 muted">"Delivery is always on time and the produce is genuinely fresh. The loyalty points add up fast."</p></div></div>
+    <div class="col-md-4"><div class="testimonial"><div class="d-flex align-items-center gap-2 mb-2"><div class="avatar">SP</div><div><div class="fw-bold small">Sara P.</div><div class="stars-inner">★★★★☆</div></div></div><p class="small mb-0 muted">"Love the community chat — I got a great recipe for the avocados I bought. Highly recommend."</p></div></div>
+  </div>
+
+  <!-- STORE LOCATOR -->
+  <div class="surface pad">
+    <div class="row align-items-center g-3">
+      <div class="col-md-8">
+        <h6 class="h-title"><i class="fa-solid fa-location-dot me-2"></i>Find a Zestora store</h6>
+        <p class="small muted mb-2">3 stores near you · open 7am – 11pm daily.</p>
+        <div class="input-group" style="max-width:420px">
+          <input class="form-control" id="locatorInput" placeholder="Enter your postcode">
+          <button class="btn-brand" onclick="App.findStore()">Search</button>
+        </div>
+        <div class="small mt-2" id="storeResults"></div>
+      </div>
+      <div class="col-md-4 text-center d-none d-md-block">
+        <i class="fa-solid fa-store fa-4x" style="color:var(--primary);opacity:.35"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SHOP PAGE -->
+<!-- ============================================================ -->
+<section class="page" id="page-shop">
+  <nav class="small muted mb-2"><a href="#" onclick="App.go('home');return false;">Home</a> <i class="fa-solid fa-chevron-right mx-1 xs"></i> <span>Shop</span></nav>
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+    <h4 class="h-title mb-0">All products</h4>
+    <span class="badge-soft" id="shopCount">0 items</span>
+  </div>
+
+  <div class="surface pad mb-3">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-4">
+        <label class="stat-lbl">Search</label>
+        <div class="search-wrap w-100">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input id="shopSearch" placeholder="Search products…" onkeyup="App.shopSuggest(this.value)" autocomplete="off">
+          <div class="suggest" id="shopSuggest"></div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <label class="stat-lbl">Sort</label>
+        <select class="form-select" id="shopSort" onchange="App.renderShop()">
+          <option value="rel">Relevance</option>
+          <option value="priceAsc">Price: low → high</option>
+          <option value="priceDesc">Price: high → low</option>
+          <option value="nameAsc">Name A–Z</option>
+          <option value="rating">Top rated</option>
+          <option value="discount">Biggest discount</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="stat-lbl">Max price: <span id="priceVal">$20</span></label>
+        <input type="range" class="form-range" id="priceRange" min="1" max="20" step="0.5" value="20" oninput="App.renderShop()">
+      </div>
+      <div class="col-md-3">
+        <label class="stat-lbl">Rating</label>
+        <select class="form-select" id="ratingFilter" onchange="App.renderShop()">
+          <option value="0">Any rating</option>
+          <option value="4">4★ &amp; up</option>
+          <option value="4.5">4.5★ &amp; up</option>
+        </select>
+      </div>
+    </div>
+    <div class="hr"></div>
+    <div class="d-flex flex-wrap gap-2 align-items-center">
+      <span class="stat-lbl me-1">Categories</span>
+      <div class="d-flex flex-wrap gap-2" id="catChips"></div>
+      <div class="ms-auto d-flex gap-2">
+        <label class="chip"><input type="checkbox" id="inStockOnly" onchange="App.renderShop()" class="me-1"> In stock only</label>
+        <label class="chip"><input type="checkbox" id="onSaleOnly" onchange="App.renderShop()" class="me-1"> On sale</label>
+        <button class="chip" onclick="App.resetFilters()"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+      </div>
+    </div>
+    <div class="small muted mt-2" id="activeFilters"></div>
+  </div>
+
+  <div class="surface-2 pad mb-3 d-none" id="compareBar">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <div class="d-flex align-items-center gap-2 flex-wrap">
+        <span class="stat-lbl"><i class="fa-solid fa-scale-balanced me-1"></i>Compare</span>
+        <div id="compareChips" class="d-flex gap-2 flex-wrap"></div>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn-brand" onclick="App.openCompare()">Compare</button>
+        <button class="btn-ghost" onclick="App.clearCompare()">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-products" id="shopGrid"></div>
+  <div class="text-center mt-3"><button class="btn-ghost" id="loadMoreBtn" onclick="App.loadMore()">Load more products</button></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- USER PAGE -->
+<!-- ============================================================ -->
+<section class="page" id="page-user">
+  <nav class="small muted mb-2"><a href="#" onclick="App.go('home');return false;">Home</a> <i class="fa-solid fa-chevron-right mx-1 xs"></i> <span>My account</span></nav>
+  <div class="row g-3">
+    <div class="col-lg-4">
+      <div class="surface pad text-center">
+        <div class="avatar-circle mx-auto mb-2" style="width:64px;height:64px;font-size:1.4rem" id="userAvatar">AJ</div>
+        <h5 class="h-title mb-0" id="userName">Alex Johnson</h5>
+        <div class="small muted" id="userEmail">alex@example.com</div>
+        <span class="badge-soft mt-2"><i class="fa-solid fa-crown me-1"></i><span id="userTier">Gold</span> member</span>
+        <div class="row g-2 mt-3">
+          <div class="col-6"><div class="surface-2 pad text-center"><div class="stat-lbl">Orders</div><div class="stat-num" id="userOrdersCount">0</div></div></div>
+          <div class="col-6"><div class="surface-2 pad text-center"><div class="stat-lbl">Points</div><div class="stat-num" id="userPoints">430</div></div></div>
+          <div class="col-6"><div class="surface-2 pad text-center"><div class="stat-lbl">Wishlist</div><div class="stat-num" id="userWishCount">0</div></div></div>
+          <div class="col-6"><div class="surface-2 pad text-center"><div class="stat-lbl">Reviews</div><div class="stat-num" id="userReviewCount">0</div></div></div>
+        </div>
+        <div class="hr"></div>
+        <div class="text-start small">
+          <div class="d-flex justify-content-between mb-1"><span class="muted">Tier progress</span><span id="tierPct">68%</span></div>
+          <div class="progress-thin"><div id="tierBar" style="width:68%"></div></div>
+          <div class="xs muted mt-1">Spend $45 more to reach Platinum</div>
+        </div>
+        <div class="hr"></div>
+        <div class="surface-2 pad text-start">
+          <div class="stat-lbl mb-1">Referral code</div>
+          <div class="d-flex gap-2">
+            <input class="form-control form-control-sm" id="referralInput" readonly>
+            <button class="btn-soft" onclick="App.copyReferral()"><i class="fa-solid fa-copy"></i></button>
+          </div>
+          <div class="xs muted mt-1">Share & earn $5 per friend.</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <ul class="nav nav-pills gap-2 mb-3 flex-wrap" id="userTabs">
+        <li class="nav-item"><button class="nav-link active" data-tab="overview">Overview</button></li>
+        <li class="nav-item"><button class="nav-link" data-tab="orders">Orders</button></li>
+        <li class="nav-item"><button class="nav-link" data-tab="wishlist">Wishlist</button></li>
+        <li class="nav-item"><button class="nav-link" data-tab="addresses">Addresses</button></li>
+        <li class="nav-item"><button class="nav-link" data-tab="payments">Payments</button></li>
+        <li class="nav-item"><button class="nav-link" data-tab="reviews">My reviews</button></li>
+        <li class="nav-item"><button class="nav-link" data-tab="saved">Saved searches</button></li>
+      </ul>
+      <div id="userTabBody"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- STAFF PAGE -->
+<!-- ============================================================ -->
+<section class="page" id="page-staff">
+  <nav class="small muted mb-2"><a href="#" onclick="App.go('home');return false;">Home</a> <i class="fa-solid fa-chevron-right mx-1 xs"></i> <span>Staff</span></nav>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="h-title mb-0"><i class="fa-solid fa-user-tie me-2"></i>Staff dashboard</h4>
+    <span class="badge-soft" id="staffShiftLabel">Shift 9:00 – 17:00</span>
+  </div>
+  <div class="row g-3 mb-3">
+    <div class="col-md-4"><div class="surface pad text-center"><div class="stat-lbl">Live clock</div><div class="countdown" id="staffClock">--:--:--</div><button class="btn-brand w-100 mt-2" id="clockBtn" onclick="App.toggleClock()"><i class="fa-solid fa-play"></i> Clock in</button><div class="xs muted mt-1" id="clockStatus">Not clocked in</div></div></div>
+    <div class="col-md-4"><div class="surface pad"><div class="stat-lbl">Stock alerts</div><div class="stat-num" id="staffLowStock">0</div><a href="#" class="small" onclick="App.go('shop');return false;">View low-stock items <i class="fa-solid fa-arrow-right"></i></a><div class="hr"></div><div class="stat-lbl">Assigned aisle</div><div class="fw-bold">Produce · A1–A4</div></div></div>
+    <div class="col-md-4"><div class="surface pad"><div class="stat-lbl">Order queue</div><div class="stat-num" id="staffOrderQueue">0</div><div class="small muted">orders awaiting fulfillment</div><button class="btn-soft mt-2 w-100" onclick="App.staffRefreshQueue()"><i class="fa-solid fa-rotate"></i> Refresh</button></div></div>
+  </div>
+  <div class="row g-3">
+    <div class="col-lg-7">
+      <div class="surface pad">
+        <h6 class="h-title"><i class="fa-solid fa-list-check me-2"></i>Task list</h6>
+        <div id="staffTasks"></div>
+        <div class="input-group mt-2"><input class="form-control" id="newTaskInput" placeholder="Add a task…"><button class="btn-brand" onclick="App.addTask()">Add</button></div>
+      </div>
+      <div class="surface pad mt-3">
+        <h6 class="h-title"><i class="fa-solid fa-boxes-packing me-2"></i>Order fulfillment</h6>
+        <div id="staffOrders"></div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="surface pad">
+        <h6 class="h-title"><i class="fa-solid fa-barcode me-2"></i>Quick scan</h6>
+        <div class="scanner-box mt-2" onclick="App.openScanner()" style="cursor:pointer"><i class="fa-solid fa-qrcode fa-2x mb-2" style="color:var(--primary)"></i><div class="fw-bold">Open scanner</div><div class="xs muted">Barcode or QR</div></div>
+        <div class="input-group mt-2"><input class="form-control" id="staffScanInput" placeholder="Type barcode…"><button class="btn-brand" onclick="App.scanManual('staffScanInput','staffScanResult')"><i class="fa-solid fa-magnifying-glass"></i></button></div>
+        <div class="small mt-2" id="staffScanResult"></div>
+      </div>
+      <div class="surface pad mt-3">
+        <h6 class="h-title"><i class="fa-solid fa-pen-to-square me-2"></i>Shift notes</h6>
+        <textarea class="form-control" id="shiftNotes" rows="4" placeholder="Handover notes for the next shift…"></textarea>
+        <button class="btn-brand mt-2 w-100" onclick="App.saveShiftNotes()">Save notes</button>
+      </div>
+      <div class="surface pad mt-3">
+        <h6 class="h-title"><i class="fa-solid fa-bullhorn me-2"></i>Announcements</h6>
+        <div class="small muted">• New price tags arrive Friday.<br>• Restock frozen aisle before 3pm.<br>• Reminder: log all wastage in the app.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- MANAGER PAGE -->
+<!-- ============================================================ -->
+<section class="page" id="page-manager">
+  <nav class="small muted mb-2"><a href="#" onclick="App.go('home');return false;">Home</a> <i class="fa-solid fa-chevron-right mx-1 xs"></i> <span>Manager</span></nav>
+  <h4 class="h-title mb-3"><i class="fa-solid fa-chart-line me-2"></i>Manager overview</h4>
+  <div class="row g-3 mb-3" id="managerKpis"></div>
+  <div class="row g-3 mb-3">
+    <div class="col-lg-7"><div class="surface pad"><div class="d-flex justify-content-between"><h6 class="h-title">Revenue · last 7 days</h6><span class="badge-soft" id="revTotal">$0</span></div><div class="bar-chart mt-3" id="salesChart"></div></div></div>
+    <div class="col-lg-5"><div class="surface pad"><h6 class="h-title">Category split</h6><div id="catChart" class="mt-2"></div></div></div>
+  </div>
+  <div class="row g-3">
+    <div class="col-lg-7">
+      <div class="surface pad">
+        <h6 class="h-title">Low stock</h6>
+        <div class="table-responsive"><table class="table-x"><thead><tr><th>Product</th><th>Stock</th><th>Action</th></tr></thead><tbody id="lowStockTable"></tbody></table></div>
+      </div>
+      <div class="surface pad mt-3">
+        <div class="d-flex justify-content-between align-items-center"><h6 class="h-title mb-0">Promotions</h6><button class="btn-soft" onclick="App.addPromo()"><i class="fa-solid fa-plus"></i> New</button></div>
+        <div id="promoList" class="mt-2"></div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="surface pad">
+        <h6 class="h-title">Staff overview</h6>
+        <table class="table-x"><thead><tr><th>Name</th><th>Role</th><th>Shift</th><th>Status</th></tr></thead><tbody>
+          <tr><td>Maria S.</td><td>Cashier</td><td>9–17</td><td><span class="badge-soft">On shift</span></td></tr>
+          <tr><td>James T.</td><td>Stocker</td><td>10–18</td><td><span class="badge-soft">On shift</span></td></tr>
+          <tr><td>Priya K.</td><td>Cashier</td><td>14–22</td><td><span class="badge-soft">Upcoming</span></td></tr>
+          <tr><td>Omar R.</td><td>Driver</td><td>8–16</td><td><span class="badge-soft">On route</span></td></tr>
+        </tbody></table>
+      </div>
+      <div class="surface pad mt-3">
+        <div class="d-flex justify-content-between align-items-center"><h6 class="h-title mb-0">Review moderation</h6><span class="badge-soft" id="pendingReviews">0</span></div>
+        <div id="reviewModeration" class="mt-2"></div>
+      </div>
+      <div class="surface pad mt-3 d-flex gap-2 flex-wrap">
+        <button class="btn-brand" onclick="App.exportReport()"><i class="fa-solid fa-download"></i> Export report</button>
+        <button class="btn-ghost" onclick="App.toast('Report emailed to manager@zestora.app')"><i class="fa-solid fa-envelope"></i> Email report</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ADMIN PAGE -->
+<!-- ============================================================ -->
+<section class="page" id="page-admin">
+  <nav class="small muted mb-2"><a href="#" onclick="App.go('home');return false;">Home</a> <i class="fa-solid fa-chevron-right mx-1 xs"></i> <span>Admin</span></nav>
+  <h4 class="h-title mb-3"><i class="fa-solid fa-shield-halved me-2"></i>Admin panel</h4>
+  <div class="row g-3 mb-3" id="adminKpis"></div>
+  <ul class="nav nav-pills gap-2 mb-3 flex-wrap" id="adminTabs">
+    <li class="nav-item"><button class="nav-link active" data-tab="products">Products</button></li>
+    <li class="nav-item"><button class="nav-link" data-tab="users">Users</button></li>
+    <li class="nav-item"><button class="nav-link" data-tab="coupons">Coupons</button></li>
+    <li class="nav-item"><button class="nav-link" data-tab="banners">Banners</button></li>
+    <li class="nav-item"><button class="nav-link" data-tab="logs">System logs</button></li>
+    <li class="nav-item"><button class="nav-link" data-tab="data">Data</button></li>
+  </ul>
+  <div id="adminTabBody"></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SETTINGS PAGE -->
+<!-- ============================================================ -->
+<section class="page" id="page-settings">
+  <nav class="small muted mb-2"><a href="#" onclick="App.go('home');return false;">Home</a> <i class="fa-solid fa-chevron-right mx-1 xs"></i> <span>Settings</span></nav>
+  <h4 class="h-title mb-3"><i class="fa-solid fa-sliders me-2"></i>Settings</h4>
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <div class="surface pad">
+        <h6 class="h-title"><i class="fa-solid fa-palette me-2"></i>Appearance</h6>
+        <div class="mb-3">
+          <label class="stat-lbl">Theme</label>
+          <div class="d-flex gap-2 mt-1" id="themePicker">
+            <button class="chip" data-theme-opt="light"><i class="fa-solid fa-sun"></i> Light</button>
+            <button class="chip" data-theme-opt="dark"><i class="fa-solid fa-moon"></i> Dark</button>
+            <button class="chip" data-theme-opt="system"><i class="fa-solid fa-circle-half-stroke"></i> System</button>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="stat-lbl">Accent colour</label>
+          <div class="d-flex gap-2 mt-1 flex-wrap" id="accentPicker">
+            <button class="chip" data-accent-opt="teal">Teal</button>
+            <button class="chip" data-accent-opt="blue">Blue</button>
+            <button class="chip" data-accent-opt="purple">Purple</button>
+            <button class="chip" data-accent-opt="rose">Rose</button>
+            <button class="chip" data-accent-opt="emerald">Emerald</button>
+            <button class="chip" data-accent-opt="amber">Amber</button>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="stat-lbl">Font size</label>
+          <div class="d-flex gap-2 mt-1" id="fontPicker">
+            <button class="chip" data-font-opt="sm">Small</button>
+            <button class="chip" data-font-opt="md">Medium</button>
+            <button class="chip" data-font-opt="lg">Large</button>
+            <button class="chip" data-font-opt="xl">XL</button>
+          </div>
+        </div>
+        <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="reduceMotion"><label class="form-check-label small" for="reduceMotion">Reduce motion</label></div>
+        <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="highContrast"><label class="form-check-label small" for="highContrast">High contrast</label></div>
+      </div>
+      <div class="surface pad mt-3">
+        <h6 class="h-title"><i class="fa-solid fa-bell me-2"></i>Notifications</h6>
+        <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="notifEmail"><label class="form-check-label small" for="notifEmail">Email notifications</label></div>
+        <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="notifPush"><label class="form-check-label small" for="notifPush">Push notifications</label></div>
+        <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="notifSms"><label class="form-check-label small" for="notifSms">SMS notifications</label></div>
+        <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="notifMarketing"><label class="form-check-label small" for="notifMarketing">Marketing emails</label></div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="surface pad">
+        <h6 class="h-title"><i class="fa-solid fa-globe me-2"></i>Regional</h6>
+        <div class="mb-2"><label class="stat-lbl">Language</label>
+          <select class="form-select" id="langSelect"><option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option></select>
+        </div>
+        <div class="mb-2"><label class="stat-lbl">Currency</label>
+          <select class="form-select" id="currencySelect"><option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option><option value="NGN">NGN ₦</option></select>
+        </div>
+      </div>
+      <div class="surface pad mt-3">
+        <h6 class="h-title"><i class="fa-solid fa-user-gear me-2"></i>Account</h6>
+        <div class="mb-2"><label class="stat-lbl">Display name</label><input class="form-control" id="accNameInput"></div>
+        <div class="mb-2"><label class="stat-lbl">Email</label><input class="form-control" id="accEmailInput"></div>
+        <div class="mb-2"><label class="stat-lbl">Community username</label><input class="form-control" id="accUserInput"></div>
+        <button class="btn-brand mt-1" onclick="App.saveAccount()">Save account</button>
+      </div>
+      <div class="surface pad mt-3">
+        <h6 class="h-title"><i class="fa-solid fa-database me-2"></i>Data &amp; privacy</h6>
+        <div class="d-flex gap-2 flex-wrap">
+          <button class="btn-ghost" onclick="App.exportData()"><i class="fa-solid fa-download"></i> Export data</button>
+          <button class="btn-ghost" onclick="document.getElementById('importFile').click()"><i class="fa-solid fa-upload"></i> Import data</button>
+          <input type="file" id="importFile" accept="application/json" class="d-none" onchange="App.importData(this)">
+          <button class="btn-ghost" style="color:var(--danger)" onclick="App.clearAllData()"><i class="fa-solid fa-trash"></i> Clear all data</button>
+          <button class="btn-ghost" onclick="App.resetSettings()"><i class="fa-solid fa-rotate-left"></i> Reset settings</button>
+        </div>
+        <p class="xs muted mt-2 mb-0">All data is stored locally in your browser. Nothing is sent to a server.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- COMMUNITY PAGE -->
+<!-- ============================================================ -->
+<section class="page" id="page-community">
+  <nav class="small muted mb-2"><a href="#" onclick="App.go('home');return false;">Home</a> <i class="fa-solid fa-chevron-right mx-1 xs"></i> <span>Community</span></nav>
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h4 class="h-title mb-0"><i class="fa-solid fa-comments me-2"></i>Community chat</h4>
+    <div class="d-flex gap-2 align-items-center">
+      <span class="small muted">Chatting as</span>
+      <span class="badge-soft" id="chatUserLabel">alex</span>
+      <button class="btn-ghost" onclick="App.go('settings')"><i class="fa-solid fa-pen"></i> Change</button>
+    </div>
+  </div>
+  <div class="row g-3">
+    <div class="col-lg-8">
+      <div class="surface overflow-hidden" style="height:560px;display:flex;flex-direction:column">
+        <div class="room-tabs" id="roomTabs"></div>
+        <div class="chat-body" id="communityMessages" style="flex:1"></div>
+        <div class="chat-input">
+          <input id="communityInput" placeholder="Say something nice…" onkeydown="if(event.key==='Enter')App.sendCommunity()">
+          <button class="btn-brand" onclick="App.sendCommunity()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="surface pad">
+        <h6 class="h-title"><i class="fa-solid fa-users me-2"></i>Online now</h6>
+        <div class="small mt-2" id="onlineUsers"></div>
+      </div>
+      <div class="surface pad mt-3">
+        <h6 class="h-title">Room guide</h6>
+        <ul class="small muted mt-2 mb-0" style="padding-left:1rem">
+          <li><b>General</b> — say hi, share hauls</li>
+          <li><b>Deals</b> — post price finds</li>
+          <li><b>Recipes</b> — cook with what you bought</li>
+          <li><b>Help</b> — ask the community</li>
+        </ul>
+      </div>
+      <div class="surface pad mt-3 d-flex gap-2 flex-wrap">
+        <button class="btn-ghost" onclick="App.clearMyMessages()"><i class="fa-solid fa-broom"></i> Clear my messages</button>
+        <button class="btn-ghost" onclick="App.go('support')"><i class="fa-solid fa-headset"></i> Contact support</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SUPPORT PAGE -->
+<!-- ============================================================ -->
+<section class="page" id="page-support">
+  <nav class="small muted mb-2"><a href="#" onclick="App.go('home');return false;">Home</a> <i class="fa-solid fa-chevron-right mx-1 xs"></i> <span>Support</span></nav>
+  <h4 class="h-title mb-3"><i class="fa-solid fa-headset me-2"></i>Support centre</h4>
+  <div class="row g-3">
+    <div class="col-lg-7">
+      <div class="surface pad">
+        <h6 class="h-title">Frequently asked questions</h6>
+        <div class="accordion mt-2" id="faqAcc"></div>
+      </div>
+      <div class="surface pad mt-3">
+        <h6 class="h-title">Open a support ticket</h6>
+        <div class="row g-2 mt-1">
+          <div class="col-md-6"><input class="form-control" id="ticketSubject" placeholder="Subject"></div>
+          <div class="col-md-6"><select class="form-select" id="ticketPriority"><option>Low</option><option selected>Normal</option><option>High</option><option>Urgent</option></select></div>
+          <div class="col-12"><textarea class="form-control" id="ticketBody" rows="3" placeholder="Describe your issue…"></textarea></div>
+          <div class="col-12"><button class="btn-brand" onclick="App.createTicket()"><i class="fa-solid fa-paper-plane"></i> Submit ticket</button></div>
+        </div>
+      </div>
+      <div class="surface pad mt-3">
+        <h6 class="h-title">My tickets</h6>
+        <div id="ticketList" class="mt-2"></div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="surface pad">
+        <h6 class="h-title"><i class="fa-solid fa-comments me-2"></i>Live support chat</h6>
+        <div class="chat-body surface-2 mt-2" id="supportMessages" style="height:300px;overflow-y:auto"></div>
+        <div class="chat-input px-0">
+          <input id="supportInput" placeholder="Ask us anything…" onkeydown="if(event.key==='Enter')App.sendSupport()">
+          <button class="btn-brand" onclick="App.sendSupport()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
+      <div class="surface pad mt-3">
+        <h6 class="h-title">Contact</h6>
+        <div class="small mt-2">
+          <div class="mb-1"><i class="fa-solid fa-phone me-2" style="color:var(--primary)"></i>+1 800 ZESTORA</div>
+          <div class="mb-1"><i class="fa-solid fa-envelope me-2" style="color:var(--primary)"></i>help@zestora.app</div>
+          <div class="mb-1"><i class="fa-solid fa-clock me-2" style="color:var(--primary)"></i>Mon–Sun, 7am – 11pm</div>
+          <div><i class="fa-solid fa-location-dot me-2" style="color:var(--primary)"></i>14 Market Square, London</div>
+        </div>
+        <button class="btn-ghost w-100 mt-3" onclick="App.requestCallback()"><i class="fa-solid fa-phone-volume"></i> Request a callback</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FEATURES PAGE -->
+<!-- ============================================================ -->
+<section class="page" id="page-features">
+  <nav class="small muted mb-2"><a href="#" onclick="App.go('home');return false;">Home</a> <i class="fa-solid fa-chevron-right mx-1 xs"></i> <span>Features</span></nav>
+  <h4 class="h-title mb-1">Everything inside Zestora</h4>
+  <p class="muted small mb-3" id="featureCountLabel"></p>
+  <div id="featureGroups"></div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container-fluid px-3 px-lg-4" style="max-width:1500px;margin:0 auto">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="brand mb-2"><i class="fa-solid fa-seedling me-1"></i>Zestora Market</div>
+        <p class="small mb-2">Fresh groceries, smarter shopping. 400+ products, scan-to-cart, and a community that cooks together.</p>
+        <div class="d-flex gap-2">
+          <a href="#" class="icon-btn" style="background:#132235;border-color:#1e3350;color:#cbd5e1"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="icon-btn" style="background:#132235;border-color:#1e3350;color:#cbd5e1"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="icon-btn" style="background:#132235;border-color:#1e3350;color:#cbd5e1"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2"><div class="stat-lbl mb-2">Shop</div><a href="#" class="d-block small mb-1" onclick="App.go('shop');return false;">All products</a><a href="#" class="d-block small mb-1" onclick="App.go('shop');return false;">Deals</a><a href="#" class="d-block small mb-1" onclick="App.go('shop');return false;">New arrivals</a><a href="#" class="d-block small" onclick="App.go('shop');return false;">Best sellers</a></div>
+      <div class="col-6 col-lg-2"><div class="stat-lbl mb-2">Account</div><a href="#" class="d-block small mb-1" onclick="App.go('user');return false;">My account</a><a href="#" class="d-block small mb-1" onclick="App.go('user');return false;">Orders</a><a href="#" class="d-block small mb-1" onclick="App.go('settings');return false;">Settings</a><a href="#" class="d-block small" onclick="App.go('features');return false;">Features</a></div>
+      <div class="col-6 col-lg-2"><div class="stat-lbl mb-2">Company</div><a href="#" class="d-block small mb-1">About us</a><a href="#" class="d-block small mb-1">Careers</a><a href="#" class="d-block small mb-1">Press</a><a href="#" class="d-block small">Sustainability</a></div>
+      <div class="col-6 col-lg-2"><div class="stat-lbl mb-2">Help</div><a href="#" class="d-block small mb-1" onclick="App.go('support');return false;">Support centre</a><a href="#" class="d-block small mb-1" onclick="App.go('community');return false;">Community</a><a href="#" class="d-block small mb-1">Shipping</a><a href="#" class="d-block small">Returns</a></div>
+    </div>
+    <div class="hr" style="border-color:rgba(255,255,255,.08)"></div>
+    <div class="d-flex justify-content-between flex-wrap gap-2 small">
+      <span>© 2025 Zestora Market. All rights reserved.</span>
+      <span><i class="fa-solid fa-lock me-1"></i>Secure · <i class="fa-solid fa-qrcode mx-1"></i>Scan · <i class="fa-solid fa-leaf mx-1"></i>Fresh</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= FLOATING UI ================= -->
+<button class="chat-fab" onclick="App.toggleChatPanel()" title="Chat with us"><i class="fa-solid fa-comments"></i></button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-head"><div><div class="fw-bold small"><i class="fa-solid fa-headset me-1"></i>Zestora Assistant</div><div class="xs muted"><span class="online-dot"></span>Online now</div></div><button class="icon-btn" style="width:30px;height:30px" onclick="App.toggleChatPanel()"><i class="fa-solid fa-times"></i></button></div>
+  <div class="chat-body" id="botMessages"></div>
+  <div class="chat-input"><input id="botInput" placeholder="Type a message…" onkeydown="if(event.key==='Enter')App.sendBot()"><button class="btn-brand" onclick="App.sendBot()"><i class="fa-solid fa-paper-plane"></i></button></div>
+</div>
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- ================= MODALS ================= -->
+<!-- Product modal -->
+<div class="modal fade" id="productModal" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content" id="productModalBody"></div></div></div>
+<!-- Compare modal -->
+<div class="modal fade" id="compareModal" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Compare products</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body" id="compareBody"></div></div></div></div>
+<!-- Scanner modal -->
+<div class="modal fade" id="scannerModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+  <div class="modal-header"><h5 class="modal-title"><i class="fa-solid fa-barcode me-2"></i>Scan barcode / QR</h5><button class="btn-close" data-bs-dismiss="modal" onclick="App.stopScanner()"></button></div>
+  <div class="modal-body">
+    <div id="scanVideoWrap" class="mb-2"><video id="scanVideo" playsinline autoplay muted></video><div class="xs muted mt-1" id="scanHint">Point the camera at a barcode or QR code…</div></div>
+    <div class="input-group"><input class="form-control" id="scanManualInput" placeholder="Or type a barcode (e.g. 8901234500001)"><button class="btn-brand" onclick="App.scanManual('scanManualInput','scanResult')"><i class="fa-solid fa-magnifying-glass"></i></button></div>
+    <div class="mt-2 small" id="scanResult"></div>
+    <div class="hr"></div>
+    <div class="xs muted">Demo barcodes: <code>8901234500001</code>, <code>8901234500005</code>, <code>8901234500012</code>…</div>
+  </div>
+</div></div></div>
+<!-- Checkout modal -->
+<div class="modal fade" id="checkoutModal" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content">
+  <div class="modal-header"><h5 class="modal-title"><i class="fa-solid fa-bag-shopping me-2"></i>Checkout</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+  <div class="modal-body" id="checkoutBody"></div>
+</div></div></div>
+<!-- Order success modal -->
+<div class="modal fade" id="successModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+  <div class="modal-body text-center py-4" id="successBody"></div>
+</div></div></div>
+<!-- Cart offcanvas -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer" style="width:400px;max-width:92vw">
+  <div class="offcanvas-header"><h5 class="offcanvas-title"><i class="fa-solid fa-basket-shopping me-2"></i>Your cart</h5><button class="btn-close" data-bs-dismiss="offcanvas"></button></div>
+  <div class="offcanvas-body" id="cartDrawerBody"></div>
+  <div class="p-3 border-top" id="cartDrawerFooter"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ================================================================
+   ZESTORA MARKET — app.js
+   ================================================================ */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = n => '$' + (Math.round(n*100)/100).toFixed(2);
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+
+const K = {
+  settings:'zestora_settings', products:'zestora_products', cart:'zestora_cart',
+  wishlist:'zestora_wishlist', compare:'zestora_compare', recent:'zestora_recent',
+  orders:'zestora_orders', addresses:'zestora_addresses', payments:'zestora_payments',
+  reviews:'zestora_reviews', notifs:'zestora_notifs', chat:'zestora_chat',
+  tickets:'zestora_tickets', logs:'zestora_logs', tasks:'zestora_tasks',
+  clock:'zestora_clock', profile:'zestora_profile', coupons:'zestora_coupons',
+  promos:'zestora_promos', users:'zestora_users', saved:'zestora_saved',
+  coupon:'zestora_coupon', banners:'zestora_banners', notes:'zestora_shiftnotes'
+};
+const load = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch(e) { return d; } };
+const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e) {} };
+
+/* ---------- Default data ---------- */
+const DEFAULT_SETTINGS = {theme:'light', accent:'teal', fontSize:'md', lang:'en', currency:'USD', reduceMotion:false, highContrast:false, notif:{email:true, push:true, sms:false, marketing:true}};
+const DEFAULT_PROFILE = {name:'Alex Johnson', email:'alex@example.com', phone:'+1 555 0100', points:430, tier:'Gold', referral:'ALEX-9F2K', avatar:'AJ', username:'alex'};
+const DEFAULT_TASKS = [{id:uid(), text:'Restock fruit aisle', status:'progress'}, {id:uid(), text:'Check dairy expiry dates', status:'done'}, {id:uid(), text:'Update price tags', status:'pending'}];
+const DEFAULT_COUPONS = [
+  {code:'FRESH10', type:'percent', value:10, desc:'10% off your order'},
+  {code:'SAVE20', type:'percent', value:20, desc:'20% off your order'},
+  {code:'FREESHIP', type:'shipping', value:0, desc:'Free shipping'}
+];
+const DEFAULT_PROMOS = [
+  {id:uid(), title:'Weekend Fruit Fest', desc:'30% off all fruit', active:true},
+  {id:uid(), title:'Dairy Days', desc:'Buy 2 get 1 free on milk', active:true},
+  {id:uid(), title:'Snack Attack', desc:'15% off snacks over $20', active:false}
+];
+const DEFAULT_USERS = [
+  {id:1, name:'Alex Johnson', email:'alex@example.com', role:'Customer', status:'Active'},
+  {id:2, name:'Maria S.', email:'maria@zestora.app', role:'Staff', status:'Active'},
+  {id:3, name:'James T.', email:'james@zestora.app', role:'Staff', status:'Active'},
+  {id:4, name:'Priya K.', email:'priya@zestora.app', role:'Manager', status:'Active'},
+  {id:5, name:'Omar R.', email:'omar@zestora.app', role:'Driver', status:'Active'}
+];
+const DEFAULT_BANNERS = [
+  {id:uid(), title:'Fresh & Organic', active:true},
+  {id:uid(), title:'Daily Essentials', active:true},
+  {id:uid(), title:'Fast Delivery', active:true}
+];
+const DEFAULT_NOTIFS = [
+  {id:uid(), title:'Welcome to Zestora', text:'Your 10% welcome coupon FRESH10 is ready.', read:false, time:Date.now()},
+  {id:uid(), title:'Order shipped', text:'Order ZM-1042 is on its way.', read:false, time:Date.now()-3600e3}
+];
+
+/* ---------- State ---------- */
+const S = {
+  settings: Object.assign({}, DEFAULT_SETTINGS, load(K.settings, {})),
+  products: [],
+  cart: load(K.cart, []),
+  wishlist: load(K.wishlist, []),
+  compare: load(K.compare, []),
+  recent: load(K.recent, []),
+  orders: load(K.orders, []),
+  addresses: load(K.addresses, [{id:uid(), label:'Home', text:'221B Baker Street, London'}, {id:uid(), label:'Work', text:'10 Downing Street, London'}]),
+  payments: load(K.payments, [{id:uid(), label:'Visa', last4:'4242'}, {id:uid(), label:'Mastercard', last4:'8210'}]),
+  reviews: load(K.reviews, {}),
+  notifs: load(K.notifs, DEFAULT_NOTIFS),
+  chat: load(K.chat, {general:[], deals:[], recipes:[], help:[]}),
+  tickets: load(K.tickets, []),
+  logs: load(K.logs, []),
+  tasks: load(K.tasks, DEFAULT_TASKS),
+  clock: load(K.clock, {in:false, since:null}),
+  profile: Object.assign({}, DEFAULT_PROFILE, load(K.profile, {})),
+  coupons: load(K.coupons, DEFAULT_COUPONS),
+  promos: load(K.promos, DEFAULT_PROMOS),
+  users: load(K.users, DEFAULT_USERS),
+  banners: load(K.banners, DEFAULT_BANNERS),
+  saved: load(K.saved, []),
+  coupon: load(K.coupon, null),
+  shiftNotes: load(K.notes, ''),
+  chatRoom: 'general',
+  shop: {q:'', cat:'all', sort:'rel', maxPrice:20, rating:0, inStock:false, onSale:false, page:1, perPage:40},
+  adminTab: 'products',
+  userTab: 'overview'
+};
+if(!S.settings.notif) S.settings.notif = {email:true, push:true, sms:false, marketing:true};
+
+function persistAll(){
+  save(K.settings, S.settings); save(K.cart, S.cart); save(K.wishlist, S.wishlist);
+  save(K.compare, S.compare); save(K.recent, S.recent); save(K.orders, S.orders);
+  save(K.addresses, S.addresses); save(K.payments, S.payments); save(K.reviews, S.reviews);
+  save(K.notifs, S.notifs); save(K.chat, S.chat); save(K.tickets, S.tickets);
+  save(K.logs, S.logs); save(K.tasks, S.tasks); save(K.clock, S.clock);
+  save(K.profile, S.profile); save(K.coupons, S.coupons); save(K.promos, S.promos);
+  save(K.users, S.users); save(K.banners, S.banners); save(K.saved, S.saved);
+  save(K.coupon, S.coupon); save(K.notes, S.shiftNotes);
+  save(K.products, S.products);
+}
+
+/* ================================================================
+   PRODUCTS — 400 generated deterministically
+   ================================================================ */
+const CATS = [
+  {id:'fruit', name:'Fruits', icon:'fa-apple-whole'},
+  {id:'veg', name:'Vegetables', icon:'fa-carrot'},
+  {id:'dairy', name:'Dairy & Eggs', icon:'fa-cheese'},
+  {id:'bakery', name:'Bakery', icon:'fa-bread-slice'},
+  {id:'meat', name:'Meat & Fish', icon:'fa-drumstick-bite'},
+  {id:'snack', name:'Snacks', icon:'fa-cookie-bite'},
+  {id:'beverage', name:'Beverages', icon:'fa-mug-hot'},
+  {id:'pantry', name:'Pantry', icon:'fa-jar'},
+  {id:'frozen', name:'Frozen', icon:'fa-snowflake'},
+  {id:'household', name:'Household', icon:'fa-spray-can-sparkles'}
+];
+const BASE_NAMES = {
+  fruit:['Apple','Banana','Orange','Strawberry','Avocado','Mango','Peach','Grapes','Pineapple','Blueberry'],
+  veg:['Tomato','Cucumber','Spinach','Carrot','Onion','Garlic','Potato','Lettuce','Broccoli','Bell Pepper'],
+  dairy:['Milk','Cheese','Yogurt','Butter','Cream','Eggs','Cottage Cheese','Sour Cream','Kefir','Mozzarella'],
+  bakery:['Bread','Croissant','Baguette','Muffin','Bagel','Donut','Cake','Cookie','Pretzel','Pita'],
+  meat:['Chicken Breast','Beef Steak','Salmon Fillet','Pork Chop','Turkey','Shrimp','Tuna','Lamb','Sausage','Bacon'],
+  snack:['Potato Chips','Chocolate Bar','Popcorn','Pretzels','Granola Bar','Mixed Nuts','Crackers','Candy','Trail Mix','Wafers'],
+  beverage:['Orange Juice','Spring Water','Cola','Coffee','Green Tea','Energy Drink','Smoothie','Lemonade','Coconut Water','Sparkling Water'],
+  pantry:['Jasmine Rice','Pasta','Flour','Sugar','Sea Salt','Olive Oil','Cereal','Black Beans','Honey','Pasta Sauce'],
+  frozen:['Frozen Pizza','Ice Cream','Frozen Peas','Frozen Berries','Frozen Fries','Frozen Fish','Frozen Dumplings','Frozen Waffles','Frozen Veg Mix','Frozen Shrimp'],
+  household:['Dish Soap','Laundry Detergent','Paper Towels','Toilet Paper','Sponges','Trash Bags','All-Purpose Cleaner','Glass Cleaner','Aluminium Foil','Cling Wrap']
+};
+const VARIANTS = ['1kg','500g','Pack of 6','Organic','Premium','Fresh','Classic','Family Pack','Economy','Single'];
+const IMG_POOL = {
+  fruit:['photo-1560806887-1e4cd0b6cbd6','photo-1571771894821-ce9b6c11b08e','photo-1547514701-42782101795e','photo-1464965911861-746a04b4bca6','photo-1523049673857-eb18f1d7b578'],
+  veg:['photo-1592924357228-91a4daadcfea','photo-1576045057995-568f588f82fb','photo-1518843875459-f738682238a6','photo-1585238342024-78d387f4a707','photo-1546069901-ba9599a7e63c'],
+  dairy:['photo-1563636619-e9143da7973b','photo-1553456558-aff63285bdd1','photo-1486297678162-eb2a19b0a32d','photo-1628088062854-d1870b4553da','photo-1584680226833-0d680d0a0794'],
+  bakery:['photo-1509440159596-0249088772ff','photo-1555507036-ab1f4038808a','photo-1608198093002-ad4e005484ec','photo-1549931319-a545dcf3bc73','photo-1486427944299-d1955d23e34d'],
+  meat:['photo-1607623814075-e51df1bdc82f','photo-1604503468506-a8da13d82791','photo-1588347818036-558601350947','photo-1544025162-d76694265947','photo-1611599537845-1c7aca0091c0'],
+  snack:['photo-1566478989037-eec170784d0b','photo-1621939514649-280e2ee25f60','photo-1599490659213-e2b9527bd087','photo-1558961363-fa8fdf82db35','photo-1499636136210-6f4ee915583e'],
+  beverage:['photo-1544145945-f90425340c7e','photo-1553530666-ba11a7da3888','photo-1437418747212-8d9709afab22','photo-1495474472287-4d71bcdd2085','photo-1544787219-7f47ccb76574'],
+  pantry:['photo-1586201375761-83865001e31c','photo-1474979266404-7eaacbcd87c5','photo-1509440159596-0249088772ff','photo-1596040033229-a9821ebd058d','photo-1600271886742-f049cd451bba'],
+  frozen:['photo-1584680226833-0d680d0a0794','photo-1563805042-7684c019e1cb','photo-1541592106381-b31e9677c0e5','photo-1560008581-09826d1de69e','photo-1600891964092-4316c288032e'],
+  household:['photo-1583947215259-38e31be8751f','photo-1585421514738-01798e348b17','photo-1563453392212-326f5e854473','photo-1600857544200-b2f666a9a2ec','photo-1584820927498-cfe5211fd8bf']
+};
+function seeded(n){ const x = Math.sin(n*9301+49297)*233280; return x - Math.floor(x); }
+function generateProducts(){
+  const out = [];
+  let n = 1;
+  for(const cat of CATS){
+    const bases = BASE_NAMES[cat.id];
+    const imgs = IMG_POOL[cat.id];
+    for(let j = 0; j < 40; j++){
+      const i = n++;
+      const base = bases[j % bases.length];
+      const variant = VARIANTS[(i*3) % VARIANTS.length];
+      const name = base + ' ' + variant;
+      const price = +(seeded(i)*14 + 1.29).toFixed(2);
+      const oldPrice = +(price * (1 + seeded(i+100)*0.35 + 0.05)).toFixed(2);
+      const rating = +(3.2 + seeded(i+7)*1.8).toFixed(1);
+      const reviews = Math.floor(seeded(i+11)*400) + 3;
+      const stock = seeded(i+17) < 0.08 ? 0 : Math.floor(seeded(i+19)*60) + 2;
+      const discount = Math.round((1 - price/oldPrice) * 100);
+      out.push({
+        id: i, name, category: cat.id, price, oldPrice, rating, reviews, stock, discount,
+        img: 'https://images.unsplash.com/' + imgs[i % imgs.length] + '?auto=format&fit=crop&w=400&h=400&q=60',
+        barcode: '89012345' + String(i).padStart(5,'0'),
+        sold: Math.floor(seeded(i+23)*900)
+      });
+    }
+  }
+  return out;
+}
+S.products = load(K.products, null);
+if(!S.products || !Array.isArray(S.products) || S.products.length < 400){ S.products = generateProducts(); save(K.products, S.products); }
+
+const productById = id => S.products.find(p => p.id === id);
+const productByBarcode = code => S.products.find(p => p.barcode === code.trim());
+const cartCount = () => S.cart.reduce((a, i) => a + i.qty, 0);
+
+/* ================================================================
+   TOASTS / LOGS / NOTIFS
+   ================================================================ */
+function toast(msg, icon='check', type='primary'){
+  const el = document.createElement('div');
+  el.className = 'toast-x';
+  el.style.borderLeftColor = 'var(--' + type + ')';
+  el.innerHTML = `<div class="ti" style="background:color-mix(in srgb, var(--${type}) 18%, transparent);color:var(--${type})"><i class="fa-solid fa-${icon}"></i></div><div>${esc(msg)}</div>`;
+  $('#toastWrap').appendChild(el);
+  setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateX(20px)'; setTimeout(() => el.remove(), 250); }, 3200);
+}
+function log(what){
+  S.logs.unshift({id:uid(), what, time:Date.now()});
+  S.logs = S.logs.slice(0, 60);
+  save(K.logs, S.logs);
+}
+function notify(title, text){
+  S.notifs.unshift({id:uid(), title, text, read:false, time:Date.now()});
+  save(K.notifs, S.notifs);
+  updateNotifBadge();
+}
+function updateNotifBadge(){
+  const unread = S.notifs.filter(n => !n.read).length;
+  const b = $('#notifBadge');
+  if(b){ b.textContent = unread; b.style.display = unread ? 'inline-block' : 'none'; }
+}
+
+/* ================================================================
+   THEME / SETTINGS
+   ================================================================ */
+function applySettings(){
+  const s = S.settings;
+  const resolved = s.theme === 'system' ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : s.theme;
+  document.documentElement.setAttribute('data-theme', resolved);
+  document.documentElement.setAttribute('data-accent', s.accent);
+  document.documentElement.setAttribute('data-fontsize', s.fontSize);
+  document.documentElement.setAttribute('data-reduce-motion', s.reduceMotion ? 'true' : 'false');
+  document.documentElement.setAttribute('data-contrast', s.highContrast ? 'high' : 'normal');
+  const icon = $('#themeIcon');
+  if(icon) icon.className = resolved === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  save(K.settings, s);
+}
+function cycleTheme(){
+  const order = ['light','dark','system'];
+  const i = order.indexOf(S.settings.theme);
+  S.settings.theme = order[(i+1) % order.length];
+  applySettings();
+  toast('Theme: ' + S.settings.theme, 'palette', 'primary');
+}
+
+/* ================================================================
+   NAV / ROUTING
+   ================================================================ */
+const PAGES = ['home','shop','user','staff','manager','admin','settings','community','support','features'];
+function go(page){
+  if(!PAGES.includes(page)) page = 'home';
+  $$('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + page);
+  if(el) el.classList.add('active');
+  $$('.app-nav .nav-link[data-nav]').forEach(a => a.classList.toggle('active', a.dataset.nav === page));
+  window.scrollTo({top:0, behavior:'smooth'});
+  if(page === 'home') renderHome();
+  if(page === 'shop') renderShop();
+  if(page === 'user') renderUser();
+  if(page === 'staff') renderStaff();
+  if(page === 'manager') renderManager();
+  if(page === 'admin') renderAdmin();
+  if(page === 'settings') renderSettings();
+  if(page === 'community') renderCommunity();
+  if(page === 'support') renderSupport();
+  if(page === 'features') renderFeatures();
+}
+
+/* ================================================================
+   PRODUCT CARD
+   ================================================================ */
+function stars(rating){
+  let s = '';
+  const full = Math.round(rating);
+  for(let i = 1; i <= 5; i++) s += `<i class="fa-${i <= full ? 'solid' : 'regular'} fa-star"></i>`;
+  return `<span class="stars-inner">${s}</span>`;
+}
+function productCard(p){
+  const inWish = S.wishlist.includes(p.id);
+  const stockBadge = p.stock === 0 ? '<span class="stock out">Out of stock</span>'
+    : p.stock < 6 ? `<span class="stock low">Only ${p.stock} left</span>`
+    : '<span class="stock ok">In stock</span>';
+  return `<div class="pcard">
+    <div class="pcard-img">
+      <img src="${p.img}" alt="${esc(p.name)}" loading="lazy">
+      ${p.discount >= 5 ? `<span class="badge-off">-${p.discount}%</span>` : ''}
+      <button class="icon-btn wish ${inWish ? 'on' : ''}" title="Wishlist" onclick="App.toggleWish(${p.id})"><i class="fa-${inWish ? 'solid' : 'regular'} fa-heart"></i></button>
+      <button class="icon-btn quick" title="Quick view" onclick="App.openProduct(${p.id})"><i class="fa-solid fa-expand"></i></button>
+    </div>
+    <div class="pcard-body">
+      <div class="pcard-name" title="${esc(p.name)}">${esc(p.name)}</div>
+      <div class="d-flex align-items-center gap-1">${stars(p.rating)}<span class="xs muted">(${p.reviews})</span></div>
+      <div class="d-flex align-items-baseline gap-1"><span class="price">${money(p.price)}</span><del class="old">${money(p.oldPrice)}</del></div>
+      <div class="d-flex justify-content-between align-items-center">
+        ${stockBadge}
+        <button class="mini-btn" title="Compare" onclick="App.toggleCompare(${p.id})"><i class="fa-solid fa-scale-balanced"></i></button>
+      </div>
+      <button class="btn-brand w-100 mt-2" ${p.stock === 0 ? 'disabled' : ''} onclick="App.addToCart(${p.id})">
+        <i class="fa-solid fa-cart-plus"></i> ${p.stock === 0 ? 'Out of stock' : 'Add to cart'}
+      </button>
+    </div>
+  </div>`;
+}
+function renderGrid(containerId, list){
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  el.innerHTML = list.length ? list.map(productCard).join('') : '<div class="muted small p-3">No products found.</div>';
+}
+
+/* ================================================================
+   HOME
+   ================================================================ */
+function renderHome(){
+  // categories
+  $('#catRow').innerHTML = CATS.map(c => `
+    <div class="col-6 col-md-3 col-lg-2">
+      <div class="surface pad text-center" style="cursor:pointer" onclick="App.goCategory('${c.id}')">
+        <i class="fa-solid ${c.icon} fa-2x mb-1" style="color:var(--primary)"></i>
+        <div class="small fw-bold">${c.name}</div>
+      </div>
+    </div>`).join('');
+  // featured
+  const featured = S.products.filter(p => p.stock > 0).sort((a,b) => b.sold - a.sold).slice(0, 8);
+  renderGrid('homeFeatured', featured);
+  // recently viewed
+  const rec = S.recent.map(productById).filter(Boolean);
+  $('#recentRow').innerHTML = rec.length ? rec.map(p => `
+    <div class="ri" onclick="App.openProduct(${p.id})">
+      <img src="${p.img}" alt="${esc(p.name)}">
+      <div class="xs mt-1" style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(p.name)}</div>
+      <div class="small fw-bold" style="color:var(--primary)">${money(p.price)}</div>
+    </div>`).join('') : '<div class="muted small">Nothing yet — start exploring!</div>';
+  startCountdown();
+  refreshWishButtons();
+  initBootstrapBits();
+}
+function startCountdown(){
+  const el = $('#dealCountdown');
+  if(!el) return;
+  let end = +localStorage.getItem('zestora_dealEnd');
+  if(!end || end < Date.now()){ end = Date.now() + 6*3600e3; localStorage.setItem('zestora_dealEnd', end); }
+  const tick = () => {
+    const d = end - Date.now();
+    if(d <= 0){ el.textContent = '00:00:00'; return; }
+    const h = String(Math.floor(d/3600e3)).padStart(2,'0');
+    const m = String(Math.floor(d%3600e3/60e3)).padStart(2,'0');
+    const s = String(Math.floor(d%60e3/1e3)).padStart(2,'0');
+    el.textContent = `${h}:${m}:${s}`;
+    setTimeout(tick, 1000);
+  };
+  tick();
+}
+
+/* ================================================================
+   SHOP
+   ================================================================ */
+function renderShop(){
+  const s = S.shop;
+  $('#shopCount').textContent = S.products.length + ' products';
+  $('#priceVal').textContent = money(+$('#priceRange').value);
+  s.maxPrice = +$('#priceRange').value;
+  s.sort = $('#shopSort').value;
+  s.rating = +$('#ratingFilter').value;
+  s.inStock = $('#inStockOnly').checked;
+  s.onSale = $('#onSaleOnly').checked;
+  // category chips
+  const chips = [{id:'all', name:'All', icon:'fa-border-all'}, ...CATS];
+  $('#catChips').innerHTML = chips.map(c => `
+    <button class="chip ${s.cat === c.id ? 'active' : ''}" onclick="App.setCategory('${c.id}')">
+      <i class="fa-solid ${c.icon || 'fa-border-all'}"></i> ${c.name}
+    </button>`).join('');
+  // filter
+  let list = S.products.filter(p => {
+    if(s.cat !== 'all' && p.category !== s.cat) return false;
+    if(p.price > s.maxPrice) return false;
+    if(s.rating && p.rating < s.rating) return false;
+    if(s.inStock && p.stock === 0) return false;
+    if(s.onSale && p.discount < 5) return false;
+    if(s.q){ const q = s.q.toLowerCase(); if(!p.name.toLowerCase().includes(q)) return false; }
+    return true;
+  });
+  if(s.sort === 'priceAsc') list.sort((a,b) => a.price - b.price);
+  else if(s.sort === 'priceDesc') list.sort((a,b) => b.price - a.price);
+  else if(s.sort === 'nameAsc') list.sort((a,b) => a.name.localeCompare(b.name));
+  else if(s.sort === 'rating') list.sort((a,b) => b.rating - a.rating);
+  else if(s.sort === 'discount') list.sort((a,b) => b.discount - a.discount);
+  else list.sort((a,b) => b.sold - a.sold);
+  const shown = list.slice(0, s.page * s.perPage);
+  renderGrid('shopGrid', shown);
+  $('#loadMoreBtn').style.display = shown.length < list.length ? 'inline-flex' : 'none';
+  const active = [];
+  if(s.q) active.push(`<span class="chip active">"${esc(s.q)}" <i class="fa-solid fa-times ms-1" onclick="App.clearSearch()"></i></span>`);
+  if(s.cat !== 'all') active.push(`<span class="chip active">${s.cat} <i class="fa-solid fa-times ms-1" onclick="App.setCategory('all')"></i></span>`);
+  if(s.inStock) active.push(`<span class="chip active">In stock <i class="fa-solid fa-times ms-1" onclick="App.clearFlag('inStock')"></i></span>`);
+  if(s.onSale) active.push(`<span class="chip active">On sale <i class="fa-solid fa-times ms-1" onclick="App.clearFlag('onSale')"></i></span>`);
+  $('#activeFilters').innerHTML = active.length ? 'Active: ' + active.join(' ') : '';
+  refreshWishButtons();
+  renderCompareBar();
+}
+function loadMore(){ S.shop.page++; renderShop(); }
+function setCategory(id){ S.shop.cat = id; S.shop.page = 1; renderShop(); }
+function goCategory(id){ go('shop'); setTimeout(() => setCategory(id), 40); }
+function resetFilters(){
+  S.shop = {q:'', cat:'all', sort:'rel', maxPrice:20, rating:0, inStock:false, onSale:false, page:1, perPage:40};
+  $('#shopSearch').value = ''; $('#priceRange').value = 20; $('#shopSort').value = 'rel';
+  $('#ratingFilter').value = '0'; $('#inStockOnly').checked = false; $('#onSaleOnly').checked = false;
+  renderShop();
+}
+function clearSearch(){ S.shop.q = ''; $('#shopSearch').value = ''; renderShop(); }
+function clearFlag(f){ S.shop[f] = false; if(f === 'inStock') $('#inStockOnly').checked = false; if(f === 'onSale') $('#onSaleOnly').checked = false; renderShop(); }
+
+/* ---- suggestions ---- */
+function suggestFor(q, boxId, onPick){
+  const box = document.getElementById(boxId);
+  if(!box) return;
+  if(!q.trim()){ box.style.display = 'none'; return; }
+  const matches = S.products.filter(p => p.name.toLowerCase().includes(q.toLowerCase())).slice(0, 6);
+  box.innerHTML = matches.length
+    ? matches.map(p => `<div onclick="${onPick}(${p.id})"><i class="fa-solid fa-magnifying-glass me-2 muted"></i>${esc(p.name)} <span class="float-end muted">${money(p.price)}</span></div>`).join('')
+    : '<div class="muted small">No matches</div>';
+  box.style.display = 'block';
+}
+function navSuggest(q){ suggestFor(q, 'navSuggest', 'App.pickNavProduct'); }
+function pickNavProduct(id){ $('#navSearch').value = ''; $('#navSuggest').style.display = 'none'; openProduct(id); }
+function shopSuggest(q){
+  S.shop.q = q; S.shop.page = 1;
+  suggestFor(q, 'shopSuggest', 'App.pickShopProduct');
+  renderShop();
+}
+function pickShopProduct(id){
+  const p = productById(id);
+  $('#shopSearch').value = p.name; S.shop.q = p.name; $('#shopSuggest').style.display = 'none';
+  renderShop();
+}
+function navSearchGo(){
+  const q = $('#navSearch').value.trim();
+  if(!q) return;
+  go('shop');
+  setTimeout(() => { $('#shopSearch').value = q; S.shop.q = q; S.shop.page = 1; renderShop(); }, 60);
+}
+
+/* ================================================================
+   WISHLIST / COMPARE / RECENT
+   ================================================================ */
+function toggleWish(id){
+  const i = S.wishlist.indexOf(id);
+  if(i > -1){ S.wishlist.splice(i,1); toast('Removed from wishlist', 'heart-crack', 'warning'); }
+  else { S.wishlist.push(id); toast('Added to wishlist', 'heart', 'success'); }
+  save(K.wishlist, S.wishlist);
+  refreshWishButtons();
+  if(document.getElementById('page-user').classList.contains('active')) renderUser();
+}
+function refreshWishButtons(){
+  $$('.pcard .wish').forEach(btn => {
+    const card = btn.closest('.pcard');
+    const idMatch = btn.getAttribute('onclick').match(/toggleWish\((\d+)\)/);
+    if(!idMatch) return;
+    const id = +idMatch[1];
+    const on = S.wishlist.includes(id);
+    btn.classList.toggle('on', on);
+    btn.querySelector('i').className = (on ? 'fa-solid' : 'fa-regular') + ' fa-heart';
+  });
+}
+function toggleCompare(id){
+  const i = S.compare.indexOf(id);
+  if(i > -1){ S.compare.splice(i,1); toast('Removed from compare', 'times', 'warning'); }
+  else {
+    if(S.compare.length >= 3){ toast('Compare allows up to 3 products', 'triangle-exclamation', 'warning'); return; }
+    S.compare.push(id); toast('Added to compare', 'scale-balanced', 'info');
+  }
+  save(K.compare, S.compare);
+  renderCompareBar();
+}
+function renderCompareBar(){
+  const bar = $('#compareBar');
+  if(!bar) return;
+  bar.classList.toggle('d-none', S.compare.length === 0);
+  $('#compareChips').innerHTML = S.compare.map(id => {
+    const p = productById(id);
+    return p ? `<span class="chip">${esc(p.name)} <i class="fa-solid fa-times ms-1" onclick="App.toggleCompare(${id})"></i></span>` : '';
+  }).join('');
+}
+function clearCompare(){ S.compare = []; save(K.compare, S.compare); renderCompareBar(); }
+function openCompare(){
+  if(S.compare.length < 2){ toast('Add at least 2 products to compare', 'triangle-exclamation', 'warning'); return; }
+  const ps = S.compare.map(productById).filter(Boolean);
+  const row = (label, fn) => `<tr><td class="fw-bold">${label}</td>${ps.map(p => `<td>${fn(p)}</td>`).join('')}</tr>`;
+  $('#compareBody').innerHTML = `<div class="table-responsive"><table class="table-x">
+    <thead><tr><th></th>${ps.map(p => `<th>${esc(p.name)}</th>`).join('')}</tr></thead>
+    <tbody>
+      ${row('Image', p => `<img src="${p.img}" style="width:60px;height:60px;object-fit:cover;border-radius:8px">`)}
+      ${row('Price', p => money(p.price))}
+      ${row('Old price', p => `<del class="muted">${money(p.oldPrice)}</del>`)}
+      ${row('Rating', p => `${stars(p.rating)} ${p.rating}`)}
+      ${row('Stock', p => p.stock > 0 ? p.stock + ' in stock' : '<span style="color:var(--danger)">Out</span>')}
+      ${row('Category', p => p.category)}
+      ${row('Barcode', p => `<code>${p.barcode}</code>`)}
+    </tbody></table></div>`;
+  bootstrap.Modal.getOrCreateInstance($('#compareModal')).show();
+}
+function pushRecent(id){
+  S.recent = [id, ...S.recent.filter(x => x !== id)].slice(0, 10);
+  save(K.recent, S.recent);
+}
+
+/* ================================================================
+   CART
+   ================================================================ */
+function addToCart(id){
+  const p = productById(id);
+  if(!p) return;
+  if(p.stock === 0){ toast('Sorry, out of stock', 'triangle-exclamation', 'danger'); return; }
+  const item = S.cart.find(i => i.id === id);
+  if(item) item.qty++;
+  else S.cart.push({id, qty:1});
+  save(K.cart, S.cart);
+  updateCartBadge();
+  toast(`${p.name} added to cart`, 'cart-plus', 'success');
+}
+function addToCartById(){ addToCart(1); }
+function changeQty(id, delta){
+  const item = S.cart.find(i => i.id === id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty < 1) S.cart = S.cart.filter(i => i.id !== id);
+  save(K.cart, S.cart);
+  updateCartBadge();
+  openCart(true);
+}
+function removeFromCart(id){
+  S.cart = S.cart.filter(i => i.id !== id);
+  save(K.cart, S.cart);
+  updateCartBadge();
+  openCart(true);
+  toast('Item removed', 'trash', 'warning');
+}
+function cartSubtotal(){
+  return S.cart.reduce((a, i) => {
+    const p = productById(i.id);
+    return a + (p ? p.price * i.qty : 0);
+  }, 0);
+}
+function cartDiscount(subtotal){
+  if(!S.coupon) return 0;
+  const c = S.coupons.find(x => x.code === S.coupon);
+  if(!c) return 0;
+  if(c.type === 'percent') return subtotal * c.value / 100;
+  if(c.type === 'shipping') return 0;
+  return 0;
+}
+function updateCartBadge(){
+  const b = $('#cartBadge');
+  if(b) b.textContent = cartCount();
+}
+function openCart(refreshOnly){
+  const body = $('#cartDrawerBody');
+  const footer = $('#cartDrawerFooter');
+  if(!body) return;
+  if(S.cart.length === 0){
+    body.innerHTML = `<div class="text-center py-5"><i class="fa-solid fa-basket-shopping fa-3x muted mb-3"></i><p class="muted">Your cart is empty.</p><button class="btn-brand" onclick="App.go('shop');bootstrap.Offcanvas.getInstance(document.getElementById('cartDrawer')).hide()">Start shopping</button></div>`;
+    footer.innerHTML = '';
+  } else {
+    body.innerHTML = S.cart.map(i => {
+      const p = productById(i.id);
+      if(!p) return '';
+      return `<div class="d-flex gap-2 align-items-center py-2 border-bottom">
+        <img src="${p.img}" style="width:56px;height:56px;object-fit:cover;border-radius:10px">
+        <div class="flex-grow-1">
+          <div class="small fw-bold">${esc(p.name)}</div>
+          <div class="xs muted">${money(p.price)} each</div>
+          <div class="d-flex align-items-center gap-2 mt-1">
+            <button class="mini-btn" onclick="App.changeQty(${p.id},-1)">−</button>
+            <span class="small fw-bold">${i.qty}</span>
+            <button class="mini-btn" onclick="App.changeQty(${p.id},1)">+</button>
+            <button class="mini-btn ms-auto" style="color:var(--danger)" onclick="App.removeFromCart(${p.id})"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="fw-bold" style="color:var(--primary)">${money(p.price * i.qty)}</div>
+      </div>`;
+    }).join('');
+    const sub = cartSubtotal();
+    const disc = cartDiscount(sub);
+    const total = sub - disc;
+    footer.innerHTML = `
+      <div class="d-flex justify-content-between small"><span class="muted">Subtotal</span><span>${money(sub)}</span></div>
+      ${disc > 0 ? `<div class="d-flex justify-content-between small"><span class="muted">Discount (${S.coupon})</span><span style="color:var(--success)">−${money(disc)}</span></div>` : ''}
+      <div class="d-flex justify-content-between mt-1"><strong>Total</strong><strong style="color:var(--primary)">${money(total)}</strong></div>
+      <button class="btn-brand w-100 mt-2" onclick="App.openCheckout()">Checkout <i class="fa-solid fa-arrow-right"></i></button>
+      <button class="btn-ghost w-100 mt-1" onclick="App.applyCouponPrompt()"><i class="fa-solid fa-ticket"></i> Apply coupon</button>`;
+  }
+  if(!refreshOnly){
+    bootstrap.Offcanvas.getOrCreateInstance($('#cartDrawer')).show();
+  }
+}
+
+/* ================================================================
+   COUPONS
+   ================================================================ */
+function applyCouponPrompt(){
+  const code = prompt('Enter coupon code (try FRESH10 or SAVE20):');
+  if(!code) return;
+  const found = S.coupons.find(c => c.code.toLowerCase() === code.trim().toLowerCase());
+  if(!found){ toast('Invalid coupon code', 'times', 'danger'); return; }
+  S.coupon = found.code; save(K.coupon, S.coupon);
+  toast(`Coupon ${found.code} applied — ${found.desc}`, 'ticket', 'success');
+  openCart(true);
+}
+function clearCoupon(){ S.coupon = null; save(K.coupon, null); openCart(true); }
+
+/* ================================================================
+   PRODUCT MODAL
+   ================================================================ */
+function openProduct(id){
+  const p = productById(id);
+  if(!p) return;
+  pushRecent(id);
+  const revs = (S.reviews[id] || []).slice(0, 5);
+  const inWish = S.wishlist.includes(id);
+  $('#productModalBody').innerHTML = `
+    <div class="modal-header"><h5 class="modal-title">${esc(p.name)}</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <div class="row g-3">
+        <div class="col-md-5">
+          <img src="${p.img}" class="w-100 rounded-3" style="background:var(--surface-2);height:260px;object-fit:cover">
+          <div class="d-flex gap-2 mt-2">
+            <button class="btn-soft flex-fill" onclick="App.toggleWish(${p.id})"><i class="fa-${inWish ? 'solid' : 'regular'} fa-heart"></i> Wishlist</button>
+            <button class="btn-soft flex-fill" onclick="App.toggleCompare(${p.id})"><i class="fa-solid fa-scale-balanced"></i> Compare</button>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="d-flex align-items-center gap-2">${stars(p.rating)}<span class="small muted">${p.rating} · ${p.reviews} reviews</span></div>
+          <div class="d-flex align-items-baseline gap-2 my-2">
+            <span class="price" style="font-size:1.8rem">${money(p.price)}</span>
+            <del class="old">${money(p.oldPrice)}</del>
+            <span class="badge-soft">-${p.discount}%</span>
+          </div>
+          <div class="small mb-2">
+            ${p.stock === 0 ? '<span class="stock out">Out of stock</span>' : p.stock < 6 ? `<span class="stock low">Only ${p.stock} left</span>` : `<span class="stock ok">In stock</span>`}
+            · Category: <b>${p.category}</b> · Barcode: <code>${p.barcode}</code>
+          </div>
+          <p class="small muted">Fresh, quality-checked and delivered with care. Stored at optimal temperature.</p>
+          <div class="d-flex gap-2 align-items-center">
+            <div class="input-group" style="width:120px">
+              <button class="btn btn-outline-secondary" onclick="App.modalQty(-1)">−</button>
+              <input class="form-control text-center" id="modalQty" value="1" readonly>
+              <button class="btn btn-outline-secondary" onclick="App.modalQty(1)">+</button>
+            </div>
+            <button class="btn-brand flex-fill" ${p.stock === 0 ? 'disabled' : ''} onclick="App.addModalToCart(${p.id})"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>
+          </div>
+          <div class="hr"></div>
+          <div class="d-flex justify-content-between align-items-center">
+            <h6 class="h-title mb-0">Reviews</h6>
+            <button class="btn-soft" onclick="App.openReviewForm(${p.id})"><i class="fa-solid fa-pen"></i> Write review</button>
+          </div>
+          <div class="mt-2" id="reviewList">${revs.length ? revs.map(r => `<div class="border-bottom py-2"><div class="d-flex justify-content-between"><b class="small">${esc(r.user)}</b><span class="xs muted">${r.date}</span></div><div class="stars-inner">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div><div class="small">${esc(r.text)}</div></div>`).join('') : '<div class="muted small">No reviews yet — be the first!</div>'}</div>
+          <div id="reviewFormWrap"></div>
+        </div>
+      </div>
+    </div>`;
+  bootstrap.Modal.getOrCreateInstance($('#productModal')).show();
+  initBootstrapBits();
+}
+function modalQty(d){
+  const inp = $('#modalQty');
+  if(!inp) return;
+  let v = Math.max(1, (+inp.value || 1) + d);
+  inp.value = v;
+}
+function addModalToCart(id){
+  const qty = +($('#modalQty').value || 1);
+  for(let i = 0; i < qty; i++) addToCart(id);
+  bootstrap.Modal.getInstance($('#productModal')).hide();
+}
+function openReviewForm(id){
+  const wrap = $('#reviewFormWrap');
+  if(!wrap) return;
+  wrap.innerHTML = `
+    <div class="surface-2 pad mt-2">
+      <div class="star-pick mb-2" id="starPick">${[1,2,3,4,5].map(n => `<i class="fa-solid fa-star" data-n="${n}" onclick="App.pickStar(${n})"></i>`).join('')}</div>
+      <textarea class="form-control" id="reviewText" rows="2" placeholder="Share your thoughts…"></textarea>
+      <button class="btn-brand mt-2" onclick="App.submitReview(${id})">Post review</button>
+    </div>`;
+  window._starPick = 5;
+  $$('#starPick i').forEach((el, i) => el.classList.toggle('on', i < 5));
+}
+function pickStar(n){
+  window._starPick = n;
+  $$('#starPick i').forEach((el, i) => el.classList.toggle('on', i < n));
+}
+function submitReview(id){
+  const text = $('#reviewText').value.trim();
+  if(!text){ toast('Please write something', 'triangle-exclamation', 'warning'); return; }
+  const stars = window._starPick || 5;
+  if(!S.reviews[id]) S.reviews[id] = [];
+  S.reviews[id].unshift({id:uid(), user:S.profile.name, stars, text, date:new Date().toLocaleDateString(), status:'pending'});
+  save(K.reviews, S.reviews);
+  toast('Review submitted for moderation', 'star', 'success');
+  bootstrap.Modal.getInstance($('#productModal')).hide();
+}
+
+/* ================================================================
+   CHECKOUT
+   ================================================================ */
+function openCheckout(){
+  if(!S.cart.length){ toast('Cart is empty', 'triangle-exclamation', 'warning'); return; }
+  bootstrap.Offcanvas.getInstance($('#cartDrawer'))?.hide();
+  const sub = cartSubtotal();
+  const disc = cartDiscount(sub);
+  const shipping = sub >= 35 ? 0 : 3.99;
+  const tax = (sub - disc) * 0.05;
+  const total = sub - disc + shipping + tax;
+  const addrOpts = S.addresses.map(a => `<option value="${a.id}">${esc(a.label)} — ${esc(a.text)}</option>`).join('');
+  const payOpts = S.payments.map(p => `<option value="${p.id}">${esc(p.label)} •••• ${p.last4}</option>`).join('');
+  const slots = ['ASAP (within 2h)','Today 2pm – 4pm','Today 5pm – 7pm','Tomorrow 9am – 11am','Tomorrow 2pm – 4pm'];
+  $('#checkoutBody').innerHTML = `
+    <div class="row g-3">
+      <div class="col-md-7">
+        <label class="stat-lbl">Delivery address</label>
+        <select class="form-select mb-2" id="coAddress">${addrOpts}</select>
+        <div class="input-group mb-3"><input class="form-control" id="coNewAddress" placeholder="Or add a new address"><button class="btn-soft" onclick="App.coAddAddress()">Add</button></div>
+        <label class="stat-lbl">Payment method</label>
+        <select class="form-select mb-2" id="coPayment">${payOpts}</select>
+        <div class="input-group mb-3"><input class="form-control" id="coNewCard" placeholder="Or card ending 4 digits"><button class="btn-soft" onclick="App.coAddPayment()">Add</button></div>
+        <label class="stat-lbl">Delivery slot</label>
+        <select class="form-select mb-3" id="coSlot">${slots.map(s => `<option>${s}</option>`).join('')}</select>
+        <label class="stat-lbl">Order notes</label>
+        <textarea class="form-control mb-3" id="coNotes" rows="2" placeholder="Gate code, delivery instructions…"></textarea>
+        <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="coGift"><label class="form-check-label small" for="coGift">Add gift wrapping (+$2.50)</label></div>
+      </div>
+      <div class="col-md-5">
+        <div class="surface-2 pad">
+          <h6 class="h-title">Order summary</h6>
+          <div class="small" id="coItems">${S.cart.map(i => { const p = productById(i.id); return p ? `<div class="d-flex justify-content-between"><span>${esc(p.name)} ×${i.qty}</span><span>${money(p.price * i.qty)}</span></div>` : ''; }).join('')}</div>
+          <div class="hr"></div>
+          <div class="d-flex justify-content-between small"><span class="muted">Subtotal</span><span>${money(sub)}</span></div>
+          ${disc > 0 ? `<div class="d-flex justify-content-between small"><span class="muted">Discount</span><span style="color:var(--success)">−${money(disc)}</span></div>` : ''}
+          <div class="d-flex justify-content-between small"><span class="muted">Shipping</span><span>${shipping === 0 ? 'Free' : money(shipping)}</span></div>
+          <div class="d-flex justify-content-between small"><span class="muted">Tax (5%)</span><span>${money(tax)}</span></div>
+          <div class="hr"></div>
+          <div class="d-flex justify-content-between"><strong>Total</strong><strong style="color:var(--primary);font-size:1.2rem" id="coTotal">${money(total)}</strong></div>
+        </div>
+        <button class="btn-brand w-100 mt-3" onclick="App.placeOrder()"><i class="fa-solid fa-lock"></i> Place order</button>
+        <button class="btn-ghost w-100 mt-1" onclick="App.applyCouponPrompt()"><i class="fa-solid fa-ticket"></i> Apply coupon</button>
+      </div>
+    </div>`;
+  bootstrap.Modal.getOrCreateInstance($('#checkoutModal')).show();
+}
+function coAddAddress(){
+  const v = $('#coNewAddress').value.trim();
+  if(!v) return;
+  const a = {id:uid(), label:'New', text:v};
+  S.addresses.push(a); save(K.addresses, S.addresses);
+  $('#coAddress').insertAdjacentHTML('beforeend', `<option value="${a.id}" selected>${esc(a.label)} — ${esc(v)}</option>`);
+  $('#coNewAddress').value = '';
+  toast('Address added', 'check', 'success');
+}
+function coAddPayment(){
+  const v = $('#coNewCard').value.trim();
+  if(!v) return;
+  const p = {id:uid(), label:'Card', last4:v.slice(-4)};
+  S.payments.push(p); save(K.payments, S.payments);
+  $('#coPayment').insertAdjacentHTML('beforeend', `<option value="${p.id}" selected>Card •••• ${p.last4}</option>`);
+  $('#coNewCard').value = '';
+  toast('Payment method added', 'check', 'success');
+}
+function placeOrder(){
+  const sub = cartSubtotal();
+  const disc = cartDiscount(sub);
+  const shipping = sub >= 35 ? 0 : 3.99;
+  const tax = (sub - disc) * 0.05;
+  const gift = $('#coGift').checked ? 2.5 : 0;
+  const total = sub - disc + shipping + tax + gift;
+  const addr = S.addresses.find(a => a.id === $('#coAddress').value);
+  const pay = S.payments.find(p => p.id === $('#coPayment').value);
+  const order = {
+    id: 'ZM-' + Math.floor(Math.random()*9000+1000),
+    date: new Date().toISOString(),
+    items: S.cart.map(i => { const p = productById(i.id); return {id:i.id, name:p.name, price:p.price, qty:i.qty, img:p.img}; }),
+    subtotal: sub, discount: disc, shipping, tax, gift, total: +total.toFixed(2),
+    address: addr ? addr.text : '', payment: pay ? pay.label + ' •••• ' + pay.last4 : '',
+    slot: $('#coSlot').value, notes: $('#coNotes').value, status: 'Placed',
+    timeline: ['Placed','Processing','Packed','Out for delivery','Delivered']
+  };
+  S.orders.unshift(order);
+  S.profile.points += Math.floor(total);
+  S.cart = []; S.coupon = null;
+  save(K.orders, S.orders); save(K.cart, S.cart); save(K.profile, S.profile); save(K.coupon, null);
+  updateCartBadge();
+  bootstrap.Modal.getInstance($('#checkoutModal')).hide();
+  notify('Order placed', `Order ${order.id} confirmed — ${money(order.total)}`);
+  log('Order ' + order.id + ' placed');
+  showSuccess(order);
+}
+function showSuccess(order){
+  $('#successBody').innerHTML = `
+    <div class="mb-2"><i class="fa-solid fa-circle-check fa-4x" style="color:var(--success)"></i></div>
+    <h4 class="h-title">Order confirmed!</h4>
+    <p class="muted small">Order <b>${order.id}</b> · ${money(order.total)}</p>
+    <div class="order-timeline">${order.timeline.map((t, i) => `<div class="step ${i === 0 ? 'done' : ''}"><div class="dot">${i === 0 ? '<i class="fa-solid fa-check"></i>' : i+1}</div>${t}</div>`).join('')}</div>
+    <p class="small muted">Delivery slot: <b>${esc(order.slot)}</b></p>
+    <div class="d-flex gap-2 justify-content-center">
+      <button class="btn-brand" onclick="App.go('user')" data-bs-dismiss="modal">Track order</button>
+      <button class="btn-ghost" onclick="App.go('shop')" data-bs-dismiss="modal">Keep shopping</button>
+    </div>`;
+  bootstrap.Modal.getOrCreateInstance($('#successModal')).show();
+}
+
+/* ================================================================
+   SCANNER
+   ================================================================ */
+let scanStream = null, scanTimer = null;
+async function openScanner(){
+  bootstrap.Modal.getOrCreateInstance($('#scannerModal')).show();
+  $('#scanResult').innerHTML = '';
+  const video = $('#scanVideo');
+  if(!video) return;
+  if(!('BarcodeDetector' in window)){
+    $('#scanHint').innerHTML = '<span style="color:var(--warning)"><i class="fa-solid fa-triangle-exclamation me-1"></i>Your browser does not support camera scanning. Use manual entry below.</span>';
+    return;
+  }
+  try {
+    scanStream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
+    video.srcObject = scanStream;
+    const detector = new BarcodeDetector({formats:['ean_13','ean_8','code_128','code_39','upc_a','upc_e','qr_code']});
+    const tick = async () => {
+      if(!video.videoWidth) return;
+      try {
+        const codes = await detector.detect(video);
+        if(codes.length){
+          const val = codes[0].rawValue;
+          stopScanner();
+          handleScannedCode(val, 'scanResult');
+          return;
+        }
+      } catch(e){}
+      scanTimer = setTimeout(tick, 400);
+    };
+    scanTimer = setTimeout(tick, 800);
+  } catch(e){
+    $('#scanHint').innerHTML = '<span style="color:var(--warning)">Camera unavailable — manual entry works.</span>';
+  }
+}
+function stopScanner(){
+  if(scanTimer){ clearTimeout(scanTimer); scanTimer = null; }
+  if(scanStream){ scanStream.getTracks().forEach(t => t.stop()); scanStream = null; }
+}
+function scanManual(inputId, resultId){
+  const val = document.getElementById(inputId).value.trim();
+  if(!val){ toast('Enter a barcode', 'triangle-exclamation', 'warning'); return; }
+  handleScannedCode(val, resultId);
+}
+function handleScannedCode(code, resultId){
+  const el = document.getElementById(resultId);
+  const p = productByBarcode(code);
+  if(!el) return;
+  if(p){
+    el.innerHTML = `<div class="surface-2 pad d-flex gap-2 align-items-center">
+      <img src="${p.img}" style="width:52px;height:52px;object-fit:cover;border-radius:8px">
+      <div class="flex-grow-1"><div class="small fw-bold">${esc(p.name)}</div><div class="xs muted">${money(p.price)} · stock ${p.stock}</div></div>
+      <button class="btn-brand" ${p.stock === 0 ? 'disabled' : ''} onclick="App.addToCart(${p.id})"><i class="fa-solid fa-cart-plus"></i></button>
+    </div>`;
+    toast('Scanned: ' + p.name, 'barcode', 'success');
+  } else {
+    el.innerHTML = `<span style="color:var(--danger)"><i class="fa-solid fa-times-circle me-1"></i>No product matches <code>${esc(code)}</code></span>`;
+    toast('Product not found', 'times', 'danger');
+  }
+}
+
+/* ================================================================
+   USER PAGE
+   ================================================================ */
+function renderUser(){
+  const p = S.profile;
+  $('#userAvatar').textContent = p.avatar || p.name.split(' ').map(x => x[0]).join('').slice(0,2).toUpperCase();
+  $('#userName').textContent = p.name;
+  $('#userEmail').textContent = p.email;
+  $('#userTier').textContent = p.tier;
+  $('#userOrdersCount').textContent = S.orders.length;
+  $('#userPoints').textContent = p.points;
+  $('#userWishCount').textContent = S.wishlist.length;
+  $('#userReviewCount').textContent = Object.values(S.reviews).reduce((a, r) => a + r.length, 0);
+  $('#referralInput').value = p.referral;
+  const pct = Math.min(100, Math.round(p.points / 1000 * 100));
+  $('#tierPct').textContent = pct + '%';
+  $('#tierBar').style.width = pct + '%';
+  $$('#userTabs .nav-link').forEach(b => b.classList.toggle('active', b.dataset.tab === S.userTab));
+  const body = $('#userTabBody');
+  if(S.userTab === 'overview'){
+    body.innerHTML = `
+      <div class="surface pad mb-3">
+        <h6 class="h-title">Recent activity</h6>
+        <div class="small mt-2">
+          ${S.orders.length ? S.orders.slice(0,3).map(o => `<div class="d-flex justify-content-between border-bottom py-1"><span>Order <b>${o.id}</b></span><span>${money(o.total)}</span></div>`).join('') : '<div class="muted">No orders yet.</div>'}
+        </div>
+      </div>
+      <div class="surface pad">
+        <h6 class="h-title">Points history</h6>
+        <div class="small mt-2">
+          <div class="d-flex justify-content-between border-bottom py-1"><span>Order bonus</span><span style="color:var(--success)">+120</span></div>
+          <div class="d-flex justify-content-between border-bottom py-1"><span>Review reward</span><span style="color:var(--success)">+15</span></div>
+          <div class="d-flex justify-content-between border-bottom py-1"><span>Welcome bonus</span><span style="color:var(--success)">+250</span></div>
+          <div class="d-flex justify-content-between py-1"><span>Redeemed</span><span style="color:var(--danger)">−80</span></div>
+        </div>
+      </div>`;
+  }
+  if(S.userTab === 'orders'){
+    body.innerHTML = S.orders.length ? S.orders.map(o => `
+      <div class="surface pad mb-2">
+        <div class="d-flex justify-content-between align-items-start">
+          <div><b>${o.id}</b><div class="xs muted">${new Date(o.date).toLocaleString()}</div></div>
+          <span class="badge-soft">${o.status}</span>
+        </div>
+        <div class="order-timeline mt-2">${o.timeline.map((t, i) => `<div class="step ${i <= 1 ? 'done' : ''}"><div class="dot">${i <= 1 ? '<i class="fa-solid fa-check"></i>' : i+1}</div>${t}</div>`).join('')}</div>
+        <div class="small">${o.items.map(i => `${esc(i.name)} ×${i.qty}`).join(', ')}</div>
+        <div class="d-flex justify-content-between mt-2"><span class="fw-bold">${money(o.total)}</span>
+          <div class="d-flex gap-1">
+            <button class="btn-soft" onclick="App.reorder('${o.id}')"><i class="fa-solid fa-rotate"></i> Reorder</button>
+            <button class="btn-soft" onclick="App.downloadInvoice('${o.id}')"><i class="fa-solid fa-file-arrow-down"></i></button>
+            <button class="btn-soft" style="color:var(--danger)" onclick="App.cancelOrder('${o.id}')"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        </div>
+      </div>`).join('') : '<div class="surface pad muted small">No orders yet.</div>';
+  }
+  if(S.userTab === 'wishlist'){
+    const list = S.wishlist.map(productById).filter(Boolean);
+    body.innerHTML = list.length ? `<div class="grid-products">${list.map(productCard).join('')}</div>` : '<div class="surface pad muted small">Your wishlist is empty.</div>';
+  }
+  if(S.userTab === 'addresses'){
+    body.innerHTML = `<div class="surface pad">
+      <h6 class="h-title">Saved addresses</h6>
+      ${S.addresses.map(a => `<div class="d-flex justify-content-between align-items-center border-bottom py-2"><div><b class="small">${esc(a.label)}</b><div class="xs muted">${esc(a.text)}</div></div><button class="btn-soft" style="color:var(--danger)" onclick="App.removeAddress('${a.id}')"><i class="fa-solid fa-trash"></i></button></div>`).join('')}
+      <div class="input-group mt-2"><input class="form-control" id="newAddrLabel" placeholder="Label"><input class="form-control" id="newAddrText" placeholder="Address"><button class="btn-brand" onclick="App.addAddress()">Add</button></div>
+    </div>`;
+  }
+  if(S.userTab === 'payments'){
+    body.innerHTML = `<div class="surface pad">
+      <h6 class="h-title">Payment methods</h6>
+      ${S.payments.map(p => `<div class="d-flex justify-content-between align-items-center border-bottom py-2"><div><b class="small">${esc(p.label)}</b><div class="xs muted">•••• ${p.last4}</div></div><button class="btn-soft" style="color:var(--danger)" onclick="App.removePayment('${p.id}')"><i class="fa-solid fa-trash"></i></button></div>`).join('')}
+      <div class="input-group mt-2"><input class="form-control" id="newPayLabel" placeholder="Card type"><input class="form-control" id="newPayLast" placeholder="Last 4 digits"><button class="btn-brand" onclick="App.addPayment()">Add</button></div>
+    </div>`;
+  }
+  if(S.userTab === 'reviews'){
+    const all = Object.entries(S.reviews).flatMap(([pid, list]) => list.map(r => ({...r, pid:+pid})));
+    body.innerHTML = all.length ? `<div class="surface pad">${all.map(r => `<div class="border-bottom py-2"><div class="d-flex justify-content-between"><b class="small">${esc(productById(r.pid)?.name || 'Product')}</b><span class="xs muted">${r.date}</span></div><div class="stars-inner">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div><div class="small">${esc(r.text)}</div><div class="xs" style="color:var(--warning)">${r.status || 'approved'}</div></div>`).join('')}</div>` : '<div class="surface pad muted small">No reviews yet.</div>';
+  }
+  if(S.userTab === 'saved'){
+    body.innerHTML = `<div class="surface pad"><h6 class="h-title">Saved searches</h6>
+      ${S.saved.length ? S.saved.map((s, i) => `<div class="d-flex justify-content-between border-bottom py-1"><span class="small">${esc(s)}</span><div><button class="btn-soft" onclick="App.runSaved('${esc(s)}')">Run</button> <button class="btn-soft" style="color:var(--danger)" onclick="App.delSaved(${i})"><i class="fa-solid fa-trash"></i></button></div></div>`).join('') : '<div class="muted small">No saved searches.</div>'}
+      <div class="input-group mt-2"><input class="form-control" id="savedInput" placeholder="e.g. organic apples"><button class="btn-brand" onclick="App.addSaved()">Save</button></div>
+    </div>`;
+  }
+}
+function reorder(id){
+  const o = S.orders.find(x => x.id === id);
+  if(!o) return;
+  o.items.forEach(i => { for(let k = 0; k < i.qty; k++) addToCart(i.id); });
+  toast('Items added to cart', 'cart-plus', 'success');
+}
+function cancelOrder(id){
+  const o = S.orders.find(x => x.id === id);
+  if(!o) return;
+  o.status = 'Cancelled';
+  save(K.orders, S.orders);
+  renderUser();
+  toast('Order cancelled', 'xmark', 'warning');
+}
+function downloadInvoice(id){
+  const o = S.orders.find(x => x.id === id);
+  if(!o) return;
+  const blob = new Blob([JSON.stringify(o, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'invoice-' + id + '.json';
+  a.click();
+  toast('Invoice downloaded', 'file-arrow-down', 'success');
+}
+function addAddress(){
+  const label = $('#newAddrLabel').value.trim() || 'Address';
+  const text = $('#newAddrText').value.trim();
+  if(!text){ toast('Enter an address', 'triangle-exclamation', 'warning'); return; }
+  S.addresses.push({id:uid(), label, text});
+  save(K.addresses, S.addresses); renderUser();
+  toast('Address added', 'check', 'success');
+}
+function removeAddress(id){ S.addresses = S.addresses.filter(a => a.id !== id); save(K.addresses, S.addresses); renderUser(); }
+function addPayment(){
+  const label = $('#newPayLabel').value.trim() || 'Card';
+  const last4 = $('#newPayLast').value.trim().slice(-4);
+  if(!last4){ toast('Enter card digits', 'triangle-exclamation', 'warning'); return; }
+  S.payments.push({id:uid(), label, last4});
+  save(K.payments, S.payments); renderUser();
+  toast('Payment method added', 'check', 'success');
+}
+function removePayment(id){ S.payments = S.payments.filter(p => p.id !== id); save(K.payments, S.payments); renderUser(); }
+function addSaved(){
+  const v = $('#savedInput').value.trim();
+  if(!v) return;
+  S.saved.push(v); save(K.saved, S.saved); renderUser();
+  toast('Search saved', 'bookmark', 'success');
+}
+function delSaved(i){ S.saved.splice(i,1); save(K.saved, S.saved); renderUser(); }
+function runSaved(q){ go('shop'); setTimeout(() => { $('#shopSearch').value = q; S.shop.q = q; renderShop(); }, 60); }
+function copyReferral(){
+  navigator.clipboard?.writeText(S.profile.referral);
+  toast('Referral code copied', 'copy', 'success');
+}
+
+/* ================================================================
+   STAFF
+   ================================================================ */
+function renderStaff(){
+  renderTasks();
+  renderStaffOrders();
+  $('#staffLowStock').textContent = S.products.filter(p => p.stock > 0 && p.stock < 6).length;
+  $('#staffOrderQueue').textContent = S.orders.filter(o => o.status !== 'Delivered' && o.status !== 'Cancelled').length;
+  $('#shiftNotes').value = S.shiftNotes;
+  updateClock();
+  const btn = $('#clockBtn');
+  if(btn) btn.innerHTML = S.clock.in ? '<i class="fa-solid fa-stop"></i> Clock out' : '<i class="fa-solid fa-play"></i> Clock in';
+  $('#clockStatus').textContent = S.clock.in ? 'Clocked in' : 'Not clocked in';
+}
+function updateClock(){
+  const el = $('#staffClock');
+  if(!el) return;
+  el.textContent = new Date().toLocaleTimeString();
+}
+setInterval(updateClock, 1000);
+function toggleClock(){
+  S.clock.in = !S.clock.in;
+  S.clock.since = S.clock.in ? Date.now() : null;
+  save(K.clock, S.clock);
+  toast(S.clock.in ? 'Clocked in — have a great shift!' : 'Clocked out. See you soon!', 'clock', S.clock.in ? 'success' : 'info');
+  renderStaff();
+}
+function renderTasks(){
+  const el = $('#staffTasks');
+  if(!el) return;
+  el.innerHTML = S.tasks.map(t => `
+    <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+      <span class="small ${t.status === 'done' ? 'text-decoration-line-through muted' : ''}">
+        <i class="fa-solid fa-circle-check me-2" style="color:${t.status === 'done' ? 'var(--success)' : t.status === 'progress' ? 'var(--warning)' : 'var(--muted)'}"></i>${esc(t.text)}
+      </span>
+      <div class="d-flex gap-1">
+        <button class="mini-btn" onclick="App.taskStatus('${t.id}','done')"><i class="fa-solid fa-check"></i></button>
+        <button class="mini-btn" style="color:var(--danger)" onclick="App.taskDelete('${t.id}')"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>`).join('') || '<div class="muted small">No tasks.</div>';
+}
+function addTask(){
+  const v = $('#newTaskInput').value.trim();
+  if(!v) return;
+  S.tasks.push({id:uid(), text:v, status:'pending'});
+  $('#newTaskInput').value = '';
+  save(K.tasks, S.tasks); renderTasks();
+  toast('Task added', 'plus', 'success');
+}
+function taskStatus(id, s){ const t = S.tasks.find(x => x.id === id); if(t) t.status = s; save(K.tasks, S.tasks); renderTasks(); }
+function taskDelete(id){ S.tasks = S.tasks.filter(x => x.id !== id); save(K.tasks, S.tasks); renderTasks(); }
+function renderStaffOrders(){
+  const el = $('#staffOrders');
+  if(!el) return;
+  const q = S.orders.filter(o => o.status !== 'Delivered' && o.status !== 'Cancelled');
+  el.innerHTML = q.length ? q.map(o => `
+    <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+      <div><b class="small">${o.id}</b><div class="xs muted">${o.items.length} items · ${money(o.total)}</div></div>
+      <div class="d-flex gap-1">
+        <button class="btn-soft" onclick="App.advanceOrder('${o.id}')">Advance</button>
+        <button class="btn-soft" onclick="App.deliverOrder('${o.id}')"><i class="fa-solid fa-check"></i></button>
+      </div>
+    </div>`).join('') : '<div class="muted small">No orders in queue.</div>';
+}
+function staffRefreshQueue(){ renderStaffOrders(); toast('Queue refreshed', 'rotate', 'info'); }
+function advanceOrder(id){
+  const o = S.orders.find(x => x.id === id); if(!o) return;
+  const idx = o.timeline.indexOf(o.status);
+  if(idx > -1 && idx < o.timeline.length - 1) o.status = o.timeline[idx+1];
+  save(K.orders, S.orders); renderStaffOrders(); renderStaff();
+  toast('Order ' + id + ' → ' + o.status, 'arrow-right', 'info');
+}
+function deliverOrder(id){
+  const o = S.orders.find(x => x.id === id); if(!o) return;
+  o.status = 'Delivered';
+  save(K.orders, S.orders); renderStaffOrders(); renderStaff();
+  toast('Order ' + id + ' delivered', 'check', 'success');
+}
+function saveShiftNotes(){ S.shiftNotes = $('#shiftNotes').value; save(K.notes, S.shiftNotes); toast('Shift notes saved', 'check', 'success'); }
+
+/* ================================================================
+   MANAGER
+   ================================================================ */
+function renderManager(){
+  const orders = S.orders;
+  const totalRev = orders.reduce((a, o) => a + o.total, 0);
+  const aov = orders.length ? totalRev / orders.length : 0;
+  $('#managerKpis').innerHTML = `
+    <div class="col-6 col-md-3"><div class="stat-card"><div class="stat-lbl">Revenue</div><div class="stat-num">${money(totalRev)}</div><div class="xs" style="color:var(--success)"><i class="fa-solid fa-arrow-up"></i> 12.4%</div></div></div>
+    <div class="col-6 col-md-3"><div class="stat-card"><div class="stat-lbl">Orders</div><div class="stat-num">${orders.length}</div><div class="xs muted">all time</div></div></div>
+    <div class="col-6 col-md-3"><div class="stat-card"><div class="stat-lbl">Avg order value</div><div class="stat-num">${money(aov)}</div><div class="xs" style="color:var(--success)"><i class="fa-solid fa-arrow-up"></i> 4.1%</div></div></div>
+    <div class="col-6 col-md-3"><div class="stat-card"><div class="stat-lbl">Low stock</div><div class="stat-num">${S.products.filter(p => p.stock > 0 && p.stock < 6).length}</div><div class="xs" style="color:var(--warning)">needs attention</div></div></div>`;
+  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const data = days.map((_, i) => 120 + Math.round(Math.abs(Math.sin(i*2.3))*260));
+  const max = Math.max(...data);
+  $('#salesChart').innerHTML = data.map((v, i) => `<div class="flex-fill"><div class="bar" style="height:${v/max*140}px"></div><div class="bar-lbl">${days[i]}</div></div>`).join('');
+  $('#revTotal').textContent = money(data.reduce((a,b) => a+b, 0));
+  const catTotals = {};
+  S.products.forEach(p => { catTotals[p.category] = (catTotals[p.category] || 0) + p.sold; });
+  const grand = Object.values(catTotals).reduce((a,b) => a+b, 0) || 1;
+  $('#catChart').innerHTML = Object.entries(catTotals).map(([c, v]) => `
+    <div class="mb-2"><div class="d-flex justify-content-between small"><span>${c}</span><span>${Math.round(v/grand*100)}%</span></div><div class="progress-thin"><div style="width:${v/grand*100}%"></div></div></div>`).join('');
+  const low = S.products.filter(p => p.stock > 0 && p.stock < 6).slice(0, 8);
+  $('#lowStockTable').innerHTML = low.length ? low.map(p => `<tr><td>${esc(p.name)}</td><td>${p.stock}</td><td><button class="btn-soft" onclick="App.restock(${p.id})">Restock</button></td></tr>`).join('') : '<tr><td colspan="3" class="muted small">All good.</td></tr>';
+  $('#promoList').innerHTML = S.promos.map(pr => `
+    <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+      <div><b class="small">${esc(pr.title)}</b><div class="xs muted">${esc(pr.desc)}</div></div>
+      <div class="d-flex gap-1">
+        <button class="btn-soft" onclick="App.togglePromo('${pr.id}')">${pr.active ? 'Pause' : 'Activate'}</button>
+        <button class="btn-soft" style="color:var(--danger)" onclick="App.delPromo('${pr.id}')"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>`).join('');
+  const pending = Object.values(S.reviews).flat().filter(r => r.status === 'pending');
+  $('#pendingReviews').textContent = pending.length;
+  $('#reviewModeration').innerHTML = pending.length ? pending.map((r, i) => `
+    <div class="border-bottom py-2">
+      <div class="small"><b>${esc(r.user)}</b> · ${'★'.repeat(r.stars)}</div>
+      <div class="small muted">${esc(r.text)}</div>
+      <div class="d-flex gap-1 mt-1">
+        <button class="btn-soft" onclick="App.approveReview(${i})">Approve</button>
+        <button class="btn-soft" style="color:var(--danger)" onclick="App.rejectReview(${i})">Reject</button>
+      </div>
+    </div>`).join('') : '<div class="muted small">No pending reviews.</div>';
+}
+function restock(id){ const p = productById(id); if(!p) return; p.stock += 20; save(K.products, S.products); renderManager(); toast('Restocked 20 × ' + p.name, 'boxes-stacked', 'success'); }
+function addPromo(){
+  const title = prompt('Promotion title?'); if(!title) return;
+  const desc = prompt('Short description?') || '';
+  S.promos.push({id:uid(), title, desc, active:true});
+  save(K.promos, S.promos); renderManager(); toast('Promotion created', 'plus', 'success');
+}
+function togglePromo(id){ const p = S.promos.find(x => x.id === id); if(p) p.active = !p.active; save(K.promos, S.promos); renderManager(); }
+function delPromo(id){ S.promos = S.promos.filter(x => x.id !== id); save(K.promos, S.promos); renderManager(); }
+function approveReview(i){
+  const all = Object.entries(S.reviews);
+  let idx = 0;
+  for(const [pid, list] of all){
+    for(const r of list){
+      if(r.status === 'pending'){
+        if(idx === i){ r.status = 'approved'; save(K.reviews, S.reviews); renderManager(); toast('Review approved', 'check', 'success'); return; }
+        idx++;
+      }
+    }
+  }
+}
+function rejectReview(i){
+  const all = Object.entries(S.reviews);
+  let idx = 0;
+  for(const [pid, list] of all){
+    for(let k = 0; k < list.length; k++){
+      if(list[k].status === 'pending'){
+        if(idx === i){ list.splice(k,1); save(K.reviews, S.reviews); renderManager(); toast('Review rejected', 'times', 'warning'); return; }
+        idx++;
+      }
+    }
+  }
+}
+function exportReport(){
+  const blob = new Blob([JSON.stringify({orders:S.orders, products:S.products, generated:new Date()}, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'zestora-report-' + Date.now() + '.json';
+  a.click();
+  toast('Report exported', 'file-arrow-down', 'success');
+}
+
+/* ================================================================
+   ADMIN
+   ================================================================ */
+function renderAdmin(){
+  $('#adminKpis').innerHTML = `
+    <div class="col-6 col-md-3"><div class="stat-card"><div class="stat-lbl">Products</div><div class="stat-num">${S.products.length}</div></div></div>
+    <div class="col-6 col-md-3"><div class="stat-card"><div class="stat-lbl">Users</div><div class="stat-num">${S.users.length}</div></div></div>
+    <div class="col-6 col-md-3"><div class="stat-card"><div class="stat-lbl">Orders</div><div class="stat-num">${S.orders.length}</div></div></div>
+    <div class="col-6 col-md-3"><div class="stat-card"><div class="stat-lbl">Coupons</div><div class="stat-num">${S.coupons.length}</div></div></div>`;
+  $$('#adminTabs .nav-link').forEach(b => b.classList.toggle('active', b.dataset.tab === S.adminTab));
+  const body = $('#adminTabBody');
+  if(S.adminTab === 'products'){
+    body.innerHTML = `<div class="surface pad">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <h6 class="h-title mb-0">Product catalogue</h6>
+        <div class="d-flex gap-2">
+          <input class="form-control form-control-sm" id="adminProdSearch" placeholder="Search…" oninput="App.adminSearchProducts()">
+          <button class="btn-brand" onclick="App.adminAddProduct()"><i class="fa-solid fa-plus"></i> Add</button>
+        </div>
+      </div>
+      <div class="table-responsive mt-2"><table class="table-x"><thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead><tbody id="adminProdTable"></tbody></table></div>
+    </div>`;
+    adminRenderProducts();
+  }
+  if(S.adminTab === 'users'){
+    body.innerHTML = `<div class="surface pad"><h6 class="h-title">Users</h6>
+      <div class="table-responsive mt-2"><table class="table-x"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+        ${S.users.map(u => `<tr><td>${esc(u.name)}</td><td>${esc(u.email)}</td><td>${u.role}</td><td>${u.status}</td><td><button class="btn-soft" onclick="App.cycleRole(${u.id})">Change role</button> <button class="btn-soft" style="color:var(--danger)" onclick="App.toggleUser(${u.id})">Suspend</button></td></tr>`).join('')}
+      </tbody></table></div></div>`;
+  }
+  if(S.adminTab === 'coupons'){
+    body.innerHTML = `<div class="surface pad"><h6 class="h-title">Coupons</h6>
+      ${S.coupons.map(c => `<div class="d-flex justify-content-between border-bottom py-2"><div><b class="small">${c.code}</b><div class="xs muted">${esc(c.desc)}</div></div><button class="btn-soft" style="color:var(--danger)" onclick="App.delCoupon('${c.code}')"><i class="fa-solid fa-trash"></i></button></div>`).join('')}
+      <div class="input-group mt-2"><input class="form-control" id="coNewCode" placeholder="CODE"><input class="form-control" id="coNewVal" placeholder="%"><button class="btn-brand" onclick="App.addCoupon()">Add</button></div>
+    </div>`;
+  }
+  if(S.adminTab === 'banners'){
+    body.innerHTML = `<div class="surface pad"><h6 class="h-title">Homepage banners</h6>
+      ${S.banners.map(b => `<div class="d-flex justify-content-between border-bottom py-2"><span class="small">${esc(b.title)}</span><button class="btn-soft" onclick="App.toggleBanner('${b.id}')">${b.active ? 'Disable' : 'Enable'}</button></div>`).join('')}
+      <div class="input-group mt-2"><input class="form-control" id="bannerTitle" placeholder="New banner title"><button class="btn-brand" onclick="App.addBanner()">Add</button></div>
+    </div>`;
+  }
+  if(S.adminTab === 'logs'){
+    body.innerHTML = `<div class="surface pad"><h6 class="h-title">System logs</h6>
+      <div class="small mt-2">${S.logs.length ? S.logs.map(l => `<div class="border-bottom py-1"><i class="fa-solid fa-circle fa-2xs me-2" style="color:var(--primary)"></i>${esc(l.what)} <span class="xs muted">${new Date(l.time).toLocaleString()}</span></div>`).join('') : '<div class="muted">No logs yet.</div>'}</div>
+    </div>`;
+  }
+  if(S.adminTab === 'data'){
+    body.innerHTML = `<div class="surface pad">
+      <h6 class="h-title">Data &amp; maintenance</h6>
+      <div class="d-flex gap-2 flex-wrap mt-2">
+        <button class="btn-brand" onclick="App.exportData()"><i class="fa-solid fa-download"></i> Backup data</button>
+        <button class="btn-ghost" onclick="App.importDataPrompt()"><i class="fa-solid fa-upload"></i> Restore data</button>
+        <button class="btn-ghost" onclick="App.resetCatalogue()"><i class="fa-solid fa-rotate"></i> Reset catalogue</button>
+        <button class="btn-ghost" style="color:var(--danger)" onclick="App.clearAllData()"><i class="fa-solid fa-trash"></i> Clear all data</button>
+      </div>
+      <div class="hr"></div>
+      <div class="small muted">Products: ${S.products.length} · Orders: ${S.orders.length} · Users: ${S.users.length} · Storage used: ~${Math.round(JSON.stringify(localStorage).length/1024)} KB</div>
+    </div>`;
+  }
+}
+function adminRenderProducts(filter){
+  const list = (filter ? S.products.filter(p => p.name.toLowerCase().includes(filter.toLowerCase())) : S.products).slice(0, 40);
+  $('#adminProdTable').innerHTML = list.map(p => `<tr>
+    <td>${p.id}</td><td>${esc(p.name)}</td><td>${p.category}</td><td>${money(p.price)}</td><td>${p.stock}</td>
+    <td><button class="btn-soft" onclick="App.adminEditProduct(${p.id})">Edit</button> <button class="btn-soft" style="color:var(--danger)" onclick="App.adminDeleteProduct(${p.id})"><i class="fa-solid fa-trash"></i></button></td>
+  </tr>`).join('');
+}
+function adminSearchProducts(){ const q = $('#adminProdSearch').value; adminRenderProducts(q); }
+function adminAddProduct(){
+  const name = prompt('Product name?'); if(!name) return;
+  const price = +(prompt('Price?', '5.00') || 5);
+  const stock = +(prompt('Stock?', '20') || 20);
+  const id = Math.max(0, ...S.products.map(p => p.id)) + 1;
+  S.products.push({id, name, category:'fruit', price, oldPrice:+(price*1.2).toFixed(2), rating:4.2, reviews:0, stock, discount:17, img:'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=400&h=400&q=60', barcode:'89012345'+String(id).padStart(5,'0'), sold:0});
+  save(K.products, S.products); adminRenderProducts(); toast('Product added', 'plus', 'success'); log('Product added: ' + name);
+}
+function adminEditProduct(id){
+  const p = productById(id); if(!p) return;
+  const name = prompt('Name', p.name); if(name) p.name = name;
+  const price = +(prompt('Price', p.price) || p.price); p.price = price;
+  const stock = +(prompt('Stock', p.stock) || p.stock); p.stock = stock;
+  save(K.products, S.products); adminRenderProducts(); toast('Product updated', 'check', 'success');
+}
+function adminDeleteProduct(id){
+  S.products = S.products.filter(p => p.id !== id);
+  save(K.products, S.products); adminRenderProducts(); toast('Product deleted', 'trash', 'warning'); log('Product deleted: ' + id);
+}
+function cycleRole(id){
+  const u = S.users.find(x => x.id === id); if(!u) return;
+  const roles = ['Customer','Staff','Manager','Driver','Admin'];
+  u.role = roles[(roles.indexOf(u.role)+1) % roles.length];
+  save(K.users, S.users); renderAdmin(); toast('Role changed to ' + u.role, 'user-gear', 'info');
+}
+function toggleUser(id){
+  const u = S.users.find(x => x.id === id); if(!u) return;
+  u.status = u.status === 'Active' ? 'Suspended' : 'Active';
+  save(K.users, S.users); renderAdmin(); toast('User ' + u.status, 'user', 'warning');
+}
+function addCoupon(){
+  const code = $('#coNewCode').value.trim().toUpperCase();
+  const val = +(($('#coNewVal').value || '').replace('%','')) || 10;
+  if(!code) return;
+  S.coupons.push({code, type:'percent', value:val, desc:val + '% off your order'});
+  save(K.coupons, S.coupons); renderAdmin(); toast('Coupon added', 'ticket', 'success');
+}
+function delCoupon(code){ S.coupons = S.coupons.filter(c => c.code !== code); save(K.coupons, S.coupons); renderAdmin(); }
+function toggleBanner(id){ const b = S.banners.find(x => x.id === id); if(b) b.active = !b.active; save(K.banners, S.banners); renderAdmin(); }
+function addBanner(){ const t = $('#bannerTitle').value.trim(); if(!t) return; S.banners.push({id:uid(), title:t, active:true}); save(K.banners, S.banners); renderAdmin(); }
+function resetCatalogue(){
+  if(!confirm('Reset the product catalogue to the original 400 items?')) return;
+  S.products = generateProducts(); save(K.products, S.products);
+  renderAdmin(); toast('Catalogue reset', 'rotate', 'success'); log('Catalogue reset');
+}
+function importDataPrompt(){ $('#importFile').click(); }
+function importData(input){
+  const file = input.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      Object.entries(data).forEach(([k, v]) => { if(k.startsWith('zestora_')) localStorage.setItem(k, JSON.stringify(v)); });
+      toast('Data imported — reloading…', 'check', 'success');
+      setTimeout(() => location.reload(), 900);
+    } catch(err){ toast('Invalid file', 'times', 'danger'); }
+  };
+  reader.readAsText(file);
+}
+function exportData(){
+  const data = {};
+  Object.values(K).forEach(k => { const v = localStorage.getItem(k); if(v) data[k] = JSON.parse(v); });
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'zestora-backup-' + Date.now() + '.json';
+  a.click();
+  toast('Backup downloaded', 'file-arrow-down', 'success');
+}
+function clearAllData(){
+  if(!confirm('This will erase ALL local data (cart, orders, settings, products, chat…). Continue?')) return;
+  Object.values(K).forEach(k => localStorage.removeItem(k));
+  localStorage.removeItem('zestora_dealEnd');
+  toast('All data cleared — reloading', 'trash', 'warning');
+  setTimeout(() => location.reload(), 800);
+}
+function resetSettings(){
+  S.settings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
+  applySettings(); renderSettings();
+  toast('Settings reset', 'rotate', 'info');
+}
+
+/* ================================================================
+   SETTINGS
+   ================================================================ */
+function renderSettings(){
+  const s = S.settings;
+  $$('#themePicker .chip').forEach(b => b.classList.toggle('active', b.dataset.themeOpt === s.theme));
+  $$('#accentPicker .chip').forEach(b => b.classList.toggle('active', b.dataset.accentOpt === s.accent));
+  $$('#fontPicker .chip').forEach(b => b.classList.toggle('active', b.dataset.fontOpt === s.fontSize));
+  $('#reduceMotion').checked = s.reduceMotion;
+  $('#highContrast').checked = s.highContrast;
+  $('#notifEmail').checked = s.notif.email;
+  $('#notifPush').checked = s.notif.push;
+  $('#notifSms').checked = s.notif.sms;
+  $('#notifMarketing').checked = s.notif.marketing;
+  $('#langSelect').value = s.lang;
+  $('#currencySelect').value = s.currency;
+  $('#accNameInput').value = S.profile.name;
+  $('#accEmailInput').value = S.profile.email;
+  $('#accUserInput').value = S.profile.username;
+  $('#accName').textContent = S.profile.name;
+}
+function saveAccount(){
+  S.profile.name = $('#accNameInput').value.trim() || S.profile.name;
+  S.profile.email = $('#accEmailInput').value.trim() || S.profile.email;
+  S.profile.username = ($('#accUserInput').value.trim() || S.profile.username).replace(/\s+/g,'_');
+  S.profile.avatar = S.profile.name.split(' ').map(x => x[0]).join('').slice(0,2).toUpperCase();
+  save(K.profile, S.profile);
+  $('#accName').textContent = S.profile.name;
+  $('#chatUserLabel').textContent = S.profile.username;
+  toast('Account saved', 'check', 'success');
+}
+
+/* ================================================================
+   COMMUNITY CHAT
+   ================================================================ */
+const ROOMS = [{id:'general', name:'General'},{id:'deals', name:'Deals'},{id:'recipes', name:'Recipes'},{id:'help', name:'Help'}];
+const SEED_CHAT = {
+  general: [
+    {id:'s1', user:'maria_s', text:'Hey everyone! Just got my delivery — the strawberries are amazing 🍓', time:Date.now()-7200e3},
+    {id:'s2', user:'james_t', text:'Anyone tried the new avocado 3-pack? Worth it?', time:Date.now()-5400e3},
+    {id:'s3', user:'priya_k', text:'Yes! Perfectly ripe. Made guac last night 🥑', time:Date.now()-3600e3}
+  ],
+  deals: [
+    {id:'d1', user:'maria_s', text:'FRESH10 still works — 10% off!', time:Date.now()-4000e3}
+  ],
+  recipes: [
+    {id:'r1', user:'priya_k', text:'Avocado toast with chili flakes + poached egg. 10/10.', time:Date.now()-5000e3}
+  ],
+  help: [
+    {id:'h1', user:'james_t', text:'Does the scanner work on QR codes too?', time:Date.now()-6000e3},
+    {id:'h2', user:'maria_s', text:'Yep, both barcode and QR.', time:Date.now()-5800e3}
+  ]
+};
+if(!S.chat || !S.chat.general || S.chat.general.length === 0){
+  S.chat = JSON.parse(JSON.stringify(SEED_CHAT));
+  save(K.chat, S.chat);
+}
+function renderCommunity(){
+  $('#chatUserLabel').textContent = S.profile.username;
+  $('#roomTabs').innerHTML = ROOMS.map(r => `<button class="${S.chatRoom === r.id ? 'active' : ''}" onclick="App.setRoom('${r.id}')">${r.name}</button>`).join('');
+  renderCommunityMessages();
+  $('#onlineUsers').innerHTML = ['maria_s','james_t','priya_k','omar_r','alex'].map(u => `<div class="d-flex align-items-center gap-2 py-1"><span class="online-dot"></span><span class="small">${u}</span></div>`).join('');
+}
+function renderCommunityMessages(){
+  const box = $('#communityMessages');
+  if(!box) return;
+  const msgs = S.chat[S.chatRoom] || [];
+  box.innerHTML = msgs.map(m => {
+    const mine = m.user === S.profile.username;
+    return `<div class="msg ${mine ? 'out' : 'in'}">${esc(m.text)}<div class="meta">${mine ? 'You' : esc(m.user)} · ${new Date(m.time).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</div></div>`;
+  }).join('') || '<div class="muted small text-center py-4">No messages yet — say hi! 👋</div>';
+  box.scrollTop = box.scrollHeight;
+}
+function setRoom(r){ S.chatRoom = r; renderCommunity(); }
+function sendCommunity(){
+  const inp = $('#communityInput');
+  const text = inp.value.trim();
+  if(!text) return;
+  if(!S.chat[S.chatRoom]) S.chat[S.chatRoom] = [];
+  S.chat[S.chatRoom].push({id:uid(), user:S.profile.username, text, time:Date.now()});
+  save(K.chat, S.chat);
+  inp.value = '';
+  renderCommunityMessages();
+}
+function clearMyMessages(){
+  Object.keys(S.chat).forEach(k => { S.chat[k] = S.chat[k].filter(m => m.user !== S.profile.username); });
+  save(K.chat, S.chat); renderCommunityMessages();
+  toast('Your messages cleared', 'broom', 'info');
+}
+setInterval(() => { if(document.getElementById('page-community').classList.contains('active')) renderCommunityMessages(); }, 2500);
+
+/* ================================================================
+   SUPPORT
+   ================================================================ */
+const FAQS = [
+  {q:'How do I track my order?', a:'Open My account → Orders to see a live timeline for every order.'},
+  {q:'What is the delivery fee?', a:'Free delivery on orders over $35. Otherwise a flat $3.99 fee applies.'},
+  {q:'How does the barcode scanner work?', a:'Tap the scanner on the home page or in the nav. Point your camera at a barcode or QR code, or type the number manually.'},
+  {q:'Can I return an item?', a:'Yes — 30-day return policy on unopened items. Open a support ticket and we\'ll arrange pickup.'},
+  {q:'How do loyalty points work?', a:'Earn 1 point per $1 spent. 1,000 points = $10 off your next order.'},
+  {q:'Is my data safe?', a:'Everything is stored locally in your browser. We never send your data to a server.'}
+];
+function renderSupport(){
+  $('#faqAcc').innerHTML = FAQS.map((f, i) => `
+    <div class="accordion-item">
+      <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq${i}">${esc(f.q)}</button></h2>
+      <div id="faq${i}" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body small">${esc(f.a)}</div></div>
+    </div>`).join('');
+  renderTickets();
+  renderSupportMessages();
+}
+function renderTickets(){
+  const el = $('#ticketList');
+  if(!el) return;
+  el.innerHTML = S.tickets.length ? S.tickets.map(t => `
+    <div class="ticket">
+      <div class="d-flex justify-content-between"><b class="small">${esc(t.subject)}</b><span class="badge-soft">${t.status}</span></div>
+      <div class="xs muted">${new Date(t.time).toLocaleString()} · ${t.priority} priority</div>
+      <div class="small mt-1">${esc(t.body)}</div>
+      ${t.status !== 'Resolved' ? `<button class="btn-soft mt-2" onclick="App.resolveTicket('${t.id}')"><i class="fa-solid fa-check"></i> Mark resolved</button>` : ''}
+    </div>`).join('') : '<div class="muted small">No tickets yet.</div>';
+}
+function createTicket(){
+  const subject = $('#ticketSubject').value.trim();
+  const body = $('#ticketBody').value.trim();
+  const priority = $('#ticketPriority').value;
+  if(!subject || !body){ toast('Fill in subject and message', 'triangle-exclamation', 'warning'); return; }
+  S.tickets.unshift({id:uid(), subject, body, priority, status:'Open', time:Date.now()});
+  save(K.tickets, S.tickets);
+  $('#ticketSubject').value = ''; $('#ticketBody').value = '';
+  renderTickets();
+  toast('Ticket submitted — we\'ll reply within 24h', 'check', 'success');
+}
+function resolveTicket(id){ const t = S.tickets.find(x => x.id === id); if(t) t.status = 'Resolved'; save(K.tickets, S.tickets); renderTickets(); toast('Ticket resolved', 'check', 'success'); }
+function renderSupportMessages(){
+  const box = $('#supportMessages');
+  if(!box) return;
+  if(!S.chat.support) S.chat.support = [{id:'bot1', user:'bot', text:'Hi! I\'m Zestora Support. How can I help?', time:Date.now()}];
+  box.innerHTML = S.chat.support.map(m => `<div class="msg ${m.user === 'bot' ? 'in' : 'out'}">${esc(m.text)}<div class="meta">${m.user === 'bot' ? 'Support' : 'You'} · ${new Date(m.time).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</div></div>`).join('');
+  box.scrollTop = box.scrollHeight;
+}
+function sendSupport(){
+  const inp = $('#supportInput');
+  const text = inp.value.trim();
+  if(!text) return;
+  if(!S.chat.support) S.chat.support = [];
+  S.chat.support.push({id:uid(), user:S.profile.username, text, time:Date.now()});
+  inp.value = '';
+  renderSupportMessages();
+  setTimeout(() => {
+    S.chat.support.push({id:uid(), user:'bot', text:botReply(text), time:Date.now()});
+    save(K.chat, S.chat);
+    renderSupportMessages();
+  }, 700);
+}
+function botReply(text){
+  const t = text.toLowerCase();
+  if(t.includes('delivery')) return 'Delivery is free over $35, otherwise $3.99. Slots are available from 2 hours after ordering.';
+  if(t.includes('refund') || t.includes('return')) return 'Returns are accepted within 30 days on unopened items. I can open a ticket for you.';
+  if(t.includes('coupon') || t.includes('discount')) return 'Try FRESH10 (10% off) or SAVE20 (20% off) at checkout.';
+  if(t.includes('scan') || t.includes('barcode') || t.includes('qr')) return 'Open the scanner from the home page or nav. It reads barcodes and QR codes — or type the number manually.';
+  if(t.includes('order')) return 'You can track every order in My account → Orders. Need a hand finding it?';
+  if(t.includes('hello') || t.includes('hi')) return 'Hello! 👋 What can I help you with today?';
+  return 'Thanks for reaching out! A human agent will follow up. In the meantime, try FRESH10 for 10% off, or check the FAQ above.';
+}
+function requestCallback(){
+  const phone = prompt('Enter your phone number for a callback:');
+  if(!phone) return;
+  toast('Callback requested — we\'ll ring you shortly', 'phone-volume', 'success');
+  log('Callback requested: ' + phone);
+}
+
+/* ================================================================
+   BOT CHAT (floating)
+   ================================================================ */
+let botMsgs = [{user:'bot', text:'Hi! 👋 I\'m Zestora Assistant. Ask me about delivery, coupons, scanning or orders.'}];
+function renderBot(){
+  const box = $('#botMessages');
+  if(!box) return;
+  box.innerHTML = botMsgs.map(m => `<div class="msg ${m.user === 'bot' ? 'in' : 'out'}">${esc(m.text)}</div>`).join('');
+  box.scrollTop = box.scrollHeight;
+}
+function toggleChatPanel(){
+  $('#chatPanel').classList.toggle('open');
+  renderBot();
+}
+function sendBot(){
+  const inp = $('#botInput');
+  const text = inp.value.trim();
+  if(!text) return;
+  botMsgs.push({user:'me', text});
+  inp.value = '';
+  renderBot();
+  setTimeout(() => { botMsgs.push({user:'bot', text:botReply(text)}); renderBot(); }, 500);
+}
+
+/* ================================================================
+   NOTIFICATIONS DROPDOWN
+=============================================================== */
+function renderNotifDropdown(){
+  const menu = $('#notifMenu');
+  if(!menu) return;
+  menu.innerHTML = S.notifs.length ? `<li><h6 class="dropdown-header">Notifications</h6></li>` + S.notifs.slice(0, 8).map(n => `<li><a class="dropdown-item ${n.read ? '' : 'fw-bold'}" href="#" onclick="App.markNotifRead('${n.id}');return false;"><div class="small">${esc(n.title)}</div><div class="xs muted">${esc(n.text)}</div></a></li>`).join('') + `<li><hr class="dropdown-divider"></li><li><a class="dropdown-item small text-center" href="#" onclick="App.markAllRead();return false;">Mark all as read</a></li>` : '<li><span class="dropdown-item-text small muted">No notifications</span></li>';
+}
+function markNotifRead(id){ const n = S.notifs.find(x => x.id === id); if(n) n.read = true; save(K.notifs, S.notifs); updateNotifBadge(); }
+function markAllRead(){ S.notifs.forEach(n => n.read = true); save(K.notifs, S.notifs); updateNotifBadge(); toast('All notifications read', 'bell', 'info'); }
+
+/* ================================================================
+   SUBSCRIBE / LOCATOR
+=============================================================== */
+function subscribe(){
+  const v = $('#newsEmail').value.trim();
+  if(!v || !v.includes('@')){ toast('Enter a valid email', 'triangle-exclamation', 'warning'); return; }
+  $('#newsStatus').innerHTML = '<span style="color:var(--success)"><i class="fa-solid fa-check me-1"></i>Subscribed! Coupon FRESH10 is ready at checkout.</span>';
+  toast('Subscribed to newsletter', 'envelope-open-text', 'success');
+  log('Newsletter signup: ' + v);
+}
+function findStore(){
+  const v = $('#locatorInput').value.trim();
+  const el = $('#storeResults');
+  if(!v){ el.innerHTML = '<span class="muted">Enter a postcode first.</span>'; return; }
+  el.innerHTML = `<div class="mt-2">
+    <div class="border-bottom py-1"><b>Zestora Downtown</b> · 0.4 km · <span style="color:var(--success)">Open now</span></div>
+    <div class="border-bottom py-1"><b>Zestora Riverside</b> · 1.2 km · <span style="color:var(--success)">Open now</span></div>
+    <div class="border-bottom py-1"><b>Zestora Uptown</b> · 2.8 km · <span style="color:var(--success)">Open now</span></div>
+  </div>`;
+}
+
+/* ================================================================
+   FEATURES LIST
+=============================================================== */
+const FEATURES = [
+  ['Landing & navigation', [
+    'Auto-playing hero carousel','Manual carousel controls','Sticky glass navigation bar','Global search with live suggestions','Quick category shortcuts','Deal-of-the-day countdown','Trust badges strip','Brand showcase','Customer testimonials','Newsletter signup','Store locator','Recently viewed products','Live stats counters','Breadcrumb navigation','Back-to-top button','Footer with links','Responsive mobile layout','Toast notifications'
+  ]],
+  ['Shop & products', [
+    '400+ product catalogue','10 product categories','Category filtering','Price range filter','Rating filter','In-stock filter','On-sale filter','Sort by price low→high','Sort by price high→low','Sort by name','Sort by rating','Sort by discount','Search with live suggestions','Product quick-view modal','Product images','Rating & review counts','Stock indicators','Discount badges','Add to cart from card','Add to cart from modal','Quantity selector','Wishlist toggle','Compare up to 3 products','Compare table','Clear compare','Related products','Product reviews list','Write a review','Star rating input','Barcode shown on product','Load more / pagination','Active filters display','Clear all filters','Old price display','Product sharing'
+  ]],
+  ['Cart & checkout', [
+    'Slide-out cart drawer','Cart item count badge','Increase quantity','Decrease quantity','Remove item','Cart subtotal','Coupon input','FRESH10 coupon','SAVE20 coupon','Free-shipping coupon','Discount display','Checkout modal','Address selection','New address entry','Payment method selection','New payment entry','Delivery slot selection','Gift wrap option','Order notes','Order summary','Tax calculation','Shipping fee calculation','Place order','Order confirmation screen','Order tracking timeline'
+  ]],
+  ['User account', [
+    'User profile card','Membership tier badge','Loyalty points balance','Tier progress bar','Points history','Order history','Order details','Reorder from history','Cancel order','Invoice download','Wishlist page','Address book','Add address','Remove address','Payment methods','Add payment method','Remove payment method','Reviews written','Notifications centre','Mark all read','Referral code','Copy referral','Profile editing','Saved searches','Run saved search','Avatar initials'
+  ]],
+  ['Scanner', [
+    'Camera barcode scanner','Camera QR scanner','BarcodeDetector API support','Manual barcode entry','Scan result product card','Add scanned item to cart','Scan error handling','Scanner in home page','Scanner in staff page','Scanner in nav menu','Scan history via recently viewed'
+  ]],
+  ['Staff dashboard', [
+    'Clock in / clock out','Live clock','Shift timer','Task list','Add task','Mark task done','Delete task','Stock alerts','Order fulfillment queue','Advance order status','Mark order delivered','Quick product scan','Shift notes','Save handover notes','Staff announcements','Assigned aisle','Low stock quick link','Staff order queue refresh'
+  ]],
+  ['Manager dashboard', [
+    'Revenue KPI','Order count KPI','Average order value','Low-stock KPI','Revenue bar chart','Category split chart','Low stock table','Restock action','Promotions manager','Create promotion','Pause / activate promotion','Delete promotion','Staff overview table','Review moderation','Approve review','Reject review','Export report','Email report'
+  ]],
+  ['Admin dashboard', [
+    'Product table','Add product','Edit product','Delete product','Search products','User management table','Change user role','Suspend user','Coupon manager','Add coupon','Delete coupon','Banner manager','Add banner','Toggle banner','System logs','Backup data','Restore data','Reset catalogue','Clear all data','Database stats','Activity log','Feature page access','Role-based dashboards','Demo role switcher'
+  ]],
+  ['Settings', [
+    'Light theme','Dark theme','System theme','Accent colour picker','Font size control','Reduce motion','High contrast mode','Email notification toggle','Push notification toggle','SMS notification toggle','Marketing email toggle','Language selection','Currency selection','Display name edit','Email edit','Community username edit','Export data','Import data','Reset settings'
+  ]],
+  ['Community chat', [
+    'General room','Deals room','Recipes room','Help room','Send message','Message timestamps','Own message styling','Online users list','Persistent messages','Clear my messages','Emoji support','Live refresh'
+  ]],
+  ['Support', [
+    'FAQ accordion','Support ticket form','Ticket priority','Ticket list','Resolve ticket','Live support chat','Bot auto-replies','Contact details','Request callback','Support hours','Support search context','Ticket status'
+  ]],
+  ['Utilities', [
+    'Toast notifications','Tooltips','Popovers','Notifications dropdown','Cart persistence','Theme persistence','Settings persistence','Offline-ready localStorage','Order invoice download','Share product','Feature list page','Demo role switcher','Scroll-to-top','Reduced-motion support'
+  ]]
+];
+function renderFeatures(){
+  const total = FEATURES.reduce((a, g) => a + g[1].length, 0);
+  $('#featureCountLabel').textContent = `${total} features implemented · stored locally · no backend required`;
+  $('#featureGroups').innerHTML = FEATURES.map(([group, items]) => `
+    <div class="surface pad mb-3 feature-group">
+      <h6 class="h-title mb-1">${esc(group)} <span class="badge-soft ms-2">${items.length}</span></h6>
+      <ul class="feature-list">${items.map(i => `<li><i class="fa-solid fa-circle-check"></i><span>${esc(i)}</span></li>`).join('')}</ul>
+    </div>`).join('');
+}
+
+/* ================================================================
+   BOOTSTRAP BITS
+=============================================================== */
+function initBootstrapBits(){
+  $$('[data-bs-toggle="tooltip"]').forEach(el => { try { bootstrap.Tooltip.getOrCreateInstance(el); } catch(e){} });
+  $$('[data-bs-toggle="popover"]').forEach(el => { try { bootstrap.Popover.getOrCreateInstance(el); } catch(e){} });
+}
+
+/* ================================================================
+   EVENT WIRING
+=============================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  applySettings();
+  updateCartBadge();
+  updateNotifBadge();
+  renderNotifDropdown();
+  renderHome();
+  initBootstrapBits();
+  $('#accName').textContent = S.profile.name;
+  $('#chatUserLabel').textContent = S.profile.username;
+
+  // global search suggestions close
+  document.addEventListener('click', e => {
+    if(!e.target.closest('.search-wrap')) $$('.suggest').forEach(s => s.style.display = 'none');
+  });
+
+  // user tabs
+  $('#userTabs')?.addEventListener('click', e => {
+    const b = e.target.closest('[data-tab]'); if(!b) return;
+    S.userTab = b.dataset.tab; renderUser();
+  });
+  // admin tabs
+  $('#adminTabs')?.addEventListener('click', e => {
+    const b = e.target.closest('[data-tab]'); if(!b) return;
+    S.adminTab = b.dataset.tab; renderAdmin();
+  });
+  // settings pickers
+  $('#themePicker')?.addEventListener('click', e => {
+    const b = e.target.closest('[data-theme-opt]'); if(!b) return;
+    S.settings.theme = b.dataset.themeOpt; applySettings(); renderSettings();
+  });
+  $('#accentPicker')?.addEventListener('click', e => {
+    const b = e.target.closest('[data-accent-opt]'); if(!b) return;
+    S.settings.accent = b.dataset.accentOpt; applySettings(); renderSettings();
+  });
+  $('#fontPicker')?.addEventListener('click', e => {
+    const b = e.target.closest('[data-font-opt]'); if(!b) return;
+    S.settings.fontSize = b.dataset.fontOpt; applySettings(); renderSettings();
+  });
+  ['reduceMotion','highContrast','notifEmail','notifPush','notifSms','notifMarketing'].forEach(id => {
+    const el = document.getElementById(id);
+    el?.addEventListener('change', () => {
+      if(id === 'reduceMotion') S.settings.reduceMotion = el.checked;
+      else if(id === 'highContrast') S.settings.highContrast = el.checked;
+      else S.settings.notif[id.replace('notif','').toLowerCase()] = el.checked;
+      applySettings();
+    });
+  });
+  $('#langSelect')?.addEventListener('change', e => { S.settings.lang = e.target.value; save(K.settings, S.settings); toast('Language set', 'globe', 'info'); });
+  $('#currencySelect')?.addEventListener('change', e => { S.settings.currency = e.target.value; save(K.settings, S.settings); toast('Currency set', 'coins', 'info'); });
+
+  // back to top
+  window.addEventListener('scroll', () => {
+    $('#backTop')?.classList.toggle('show', window.scrollY > 400);
+  });
+
+  // keyboard shortcut: "/" focuses search
+  document.addEventListener('keydown', e => {
+    if(e.key === '/' && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)){
+      e.preventDefault(); $('#navSearch')?.focus();
+    }
+  });
+
+  // cross-tab chat sync
+  window.addEventListener('storage', e => {
+    if(e.key === K.chat){
+      try { S.chat = JSON.parse(e.newValue); if(document.getElementById('page-community').classList.contains('active')) renderCommunityMessages(); } catch(err){}
+    }
+  });
+
+  // initial renders for lazy pages
+  renderShop();
+  renderUser();
+  renderStaff();
+  renderManager();
+  renderAdmin();
+  renderSettings();
+  renderCommunity();
+  renderSupport();
+  renderFeatures();
+  renderBot();
+  renderSupportMessages();
+  updateClock();
+});
+
+/* ================================================================
+   EXPORT APP
+=============================================================== */
+const App = {
+  go, cycleTheme, toast,
+  // products
+  addToCart, addToCartById, changeQty, removeFromCart, openCart,
+  toggleWish, toggleCompare, clearCompare, openCompare, openProduct,
+  modalQty, addModalToCart, openReviewForm, pickStar, submitReview,
+  // search
+  navSuggest, pickNavProduct, navSearchGo, shopSuggest, pickShopProduct,
+  // shop
+  renderShop, loadMore, setCategory, goCategory, resetFilters, clearSearch, clearFlag,
+  // checkout
+  openCheckout, coAddAddress, coAddPayment, placeOrder, applyCouponPrompt, clearCoupon,
+  // scanner
+  openScanner, stopScanner, scanManual,
+  // user
+  reorder, cancelOrder, downloadInvoice, addAddress, removeAddress, addPayment, removePayment,
+  addSaved, delSaved, runSaved, copyReferral,
+  // staff
+  toggleClock, addTask, taskStatus, taskDelete, staffRefreshQueue, advanceOrder, deliverOrder, saveShiftNotes,
+  // manager
+  restock, addPromo, togglePromo, delPromo, approveReview, rejectReview, exportReport,
+  // admin
+  adminSearchProducts, adminAddProduct, adminEditProduct, adminDeleteProduct,
+  cycleRole, toggleUser, addCoupon, delCoupon, toggleBanner, addBanner,
+  resetCatalogue, importData, importDataPrompt, exportData, clearAllData, resetSettings,
+  // settings
+  saveAccount,
+  // community
+  setRoom, sendCommunity, clearMyMessages,
+  // support
+  createTicket, resolveTicket, sendSupport, requestCallback,
+  // notifications
+  renderNotifDropdown, markNotifRead, markAllRead,
+  // misc
+  subscribe, findStore, toggleChatPanel, sendBot
+};
+window.App = App;
+</script>
+</body>
+</html>
